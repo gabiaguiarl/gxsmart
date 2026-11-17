@@ -11,3 +11,24 @@
 .about{padding-bottom:clamp(56px,6vw,80px)}
 .statement.is-live{padding-top:clamp(48px,5vw,72px);padding-bottom:clamp(64px,7vw,96px)}
 .difference{padding-bottom:clamp(56px,6vw,72px)}
+
+/* Fase 4 — serviços e área comercial */
+/* Cards de serviço: texto mais legível, profundidade sutil e o mesmo destaque para quem navega pelo teclado. */
+.sc-cards .sc-card{background:linear-gradient(180deg,#18131d 0%,#141418 60%)}
+.sc-cards .sc-card.is-active{background:linear-gradient(180deg,#22122c 0%,#1a0f21 70%)}
+.sc-cards .service-copy p{font-size:14px;line-height:1.6}
+.sc-cards .sc-card:not(.is-active):not(:hover) .service-visual{opacity:.7;filter:saturate(.6)}
+.sc-cards .sc-card:focus-within{border-color:#7809acaa;box-shadow:0 24px 60px -30px #7809acaa}
+.sc-cards .sc-card:focus-within:not(.is-active) .service-visual{opacity:1;filter:none}
+/* A animação de entrada (GSAP) deixa "translate: none" inline nos cards, o que anulava o leve levantar no hover. */
+.sc-cards .sc-card:is(:hover,:focus-within){translate:0 -4px!important}
+@media (prefers-reduced-motion:reduce){.sc-cards .sc-card:is(:hover,:focus-within){translate:none!important}}
+
+/* "Seu produto está parado?": canais mais legíveis e botão de conversão com mais presença. */
+.sales-channels li{font-size:11px;padding:10px 14px}
+.sales-cta{font-size:13px;padding:22px 28px;box-shadow:inset 0 1px #ffffff35,0 18px 50px -24px #7809acc0}
+.sales-cta:hover,.sales-cta:focus-visible{box-shadow:inset 0 1px #ffffff35,0 22px 60px -18px #7809ace0}
+@media (prefers-reduced-motion:no-preference){
+  .sales-cta span{transition:transform .3s cubic-bezier(.16,1,.3,1)}
+  .sales-cta:hover span,.sales-cta:focus-visible span{transform:translate(2px,-2px)}
+}

@@ -2,6 +2,22 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Fase 4: serviços e área comercial
+
+**Resumo:** cards de serviço mais legíveis e com mais profundidade, efeito de hover consertado, mesmo destaque para quem navega pelo teclado e botão de conversão "QUERO VENDER MAIS" com mais presença. Conteúdo, links e logos dos marketplaces preservados.
+
+**Melhorias**
+- Cards de serviço: descrição de 13px para 14px, fundo com gradiente roxo bem sutil e ilustrações dos cards inativos menos apagadas (opacidade de 0,55 para 0,7).
+- Teclado: quando um card recebe foco, ele sobe, a borda fica roxa e a ilustração aparece por inteiro, como no hover.
+- "Seu produto está parado?": botão maior (texto de 12px para 13px, mais espaço interno), brilho roxo suave em volta e seta que se move no hover. Canais (Marketplaces, Lojas virtuais...) de 10px para 11px.
+
+**Correções**
+- O leve levantar dos cards no hover não funcionava: a animação de entrada deixava `translate: none` inline em cada card. Agora funciona e é desligado no modo de movimento reduzido.
+
+**Observações técnicas**
+- Tudo em `src/layout-refined.css` (cópia em `dist/assets/`); nenhum JavaScript alterado.
+- O texto um pouco maior deixou a página 37px mais alta no desktop e 82px no celular.
+
 ## 17/11/2026 — Fase 3: refinamento 3D
 
 **Resumo:** a cena 3D faz menos trabalho a cada quadro, reduz a resolução sozinha em computadores lentos e o carrinho do e-commerce não cobre mais o texto da loja. Nenhum modelo 3D foi criado ou trocado.

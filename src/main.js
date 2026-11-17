@@ -47,3 +47,4 @@ ScrollTrigger.sort();
 ScrollTrigger.refresh();
 
 import './portfolio-refined.css';
+import './layout-refined.css';

@@ -1,0 +1,13 @@
+/* Fase 1 — layout e tipografia (17/11/2026)
+   Carregado depois dos demais estilos; só ajusta medidas, sem mudar cores, fontes ou estrutura. */
+
+/* Máscaras de revelação das palavras: espaço extra no topo para acentos de maiúsculas
+   (Ã, Í, Õ, Ê) e nas laterais para letras com tracking negativo. As margens negativas
+   compensam o padding, então a posição do texto e a altura das linhas não mudam. */
+.kw{padding:.2em .06em .12em;margin:-.2em -.06em -.12em}
+.cp,.sw{padding-top:.2em;margin-top:-.2em}
+
+/* Ritmo vertical: menos vazio entre "O estúdio" e "O que nos guia" e no fim de "A conexão faz a diferença". */
+.about{padding-bottom:clamp(56px,6vw,80px)}
+.statement.is-live{padding-top:clamp(48px,5vw,72px);padding-bottom:clamp(64px,7vw,96px)}
+.difference{padding-bottom:clamp(56px,6vw,72px)}

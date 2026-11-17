@@ -264,7 +264,7 @@ function connectPhrase() {
     [...pts, end].forEach(([x, y], i) => { const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', i === pts.length ? 7 : 5); if (i === pts.length) c.setAttribute('class', 'cp-end'); svg.append(c); });
   };
   draw();
-  const tl = gsap.timeline({ defaults: { ease: EASE.scroll }, scrollTrigger: { trigger: band, start: 'top 88%', end: 'bottom 45%', scrub: SCRUB.base } });
+  const tl = gsap.timeline({ defaults: { ease: EASE.scroll }, scrollTrigger: { trigger: band, start: 'top 88%', end: 'bottom 70%', scrub: SCRUB.base } });
   tl.from(qa('.cp-i', band), { yPercent: 125, duration: 1, stagger: 0.45 }, 0)
     .fromTo(path, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 2.2 }, 0.3)
     .from(svg.querySelectorAll('circle'), { scale: 0, transformOrigin: '50% 50%', duration: 0.4, stagger: 0.5 }, 0.3)

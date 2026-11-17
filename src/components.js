@@ -29,9 +29,16 @@ export function connectionGrid() {
 }
 // Marketplace card (service list only): layered 2.5D composition from the supplied reference image.
 // The stage fallback keeps serviceVisual('marketplace').
+// Shared 2.5D scene (single image layer: float, pointer tilt, hover depth). Used for the
+// Marketplaces and Lives de Vendas compositions, in the service cards and in the stage.
+const SCENES = {
+  marketplace: { cls: 'visual-marketplace market-scene', src: '/assets/marketplaces/marketplace-composition.webp', h: 676 },
+  live: { cls: 'visual-live market-scene scene-live', src: '/assets/live/live-composition.webp', h: 678 },
+};
 export function cardVisual(kind) {
-  if (kind !== 'marketplace') return serviceVisual(kind);
-  return '<div class="service-visual visual-marketplace market-scene" aria-hidden="true"><div class="market-tilt"><span class="market-shadow"></span><div class="market-float"><img class="market-art" src="/assets/marketplaces/marketplace-composition.webp" alt="" width="640" height="676" loading="lazy" decoding="async"></div></div></div>';
+  const sc = SCENES[kind];
+  if (!sc) return serviceVisual(kind);
+  return `<div class="service-visual ${sc.cls}" aria-hidden="true"><div class="market-tilt"><span class="market-shadow"></span><div class="market-float"><img class="market-art" src="${sc.src}" alt="" width="640" height="${sc.h}" loading="lazy" decoding="async"></div></div></div>`;
 }
 
 export function serviceVisual(kind) {

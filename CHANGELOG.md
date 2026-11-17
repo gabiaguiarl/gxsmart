@@ -2,6 +2,21 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Lives de Vendas: nova composição visual
+
+**Resumo:** o serviço Lives de Vendas passou a usar a composição fornecida (celular com live, apresentadora, produto, ring light, sacola GX Smart, selo LIVE e carrinho), no card pequeno e no card grande. Mesmo componente e animações de Marketplaces; nenhuma imagem ou modelo novo gerado.
+
+**Melhorias**
+- Imagem otimizada: 1218×1291 (158 KB) → 640×678 WebP (55 KB), carregada sob demanda.
+- Card grande (desktop): composição em destaque (~447×439px), centralizada acima de "Lives de Vendas"; o pedestal se dissolve no fundo, sem corte reto. Quando Lives está ativo, a cena WebGL antiga fica oculta e não é desenhada.
+- Card pequeno: imagem cerca de 30% maior e centrada no celular, para a apresentadora ficar reconhecível; o pedestal fica de fora.
+- Tablet e celular: mesmo posicionamento já usado em Marketplaces (150px centralizado no tablet; 128px à direita no celular, sem sobrepor o título).
+- Movimento: flutuação, inclinação com o mouse, avanço no hover e transição ao selecionar o serviço, reaproveitados; parado com movimento reduzido.
+
+**Observações técnicas**
+- O componente virou compartilhado: `cardVisual()` usa uma tabela `SCENES` (Marketplaces e Lives) e o CSS usa variáveis por cena (`--scene-mask`, `--scene-fade`, `--crop-px`, `--frame-ratio`, `--art-h`, `--art-shift`). Marketplaces continua com os mesmos valores.
+- As classes CSS mantêm o prefixo `market-` da primeira implementação.
+
 ## 17/11/2026 — Card Marketplace: composição também no card grande
 
 **Resumo:** o card grande à esquerda (palco dos serviços) passou a mostrar a mesma composição de marketplaces do card pequeno, no lugar dos três ícones 3D antigos. Asset reutilizado; nenhuma imagem ou modelo novo.

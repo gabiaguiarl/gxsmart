@@ -34,6 +34,19 @@ export function createEnvironment(renderer) {
   return texture;
 }
 
+// Adaptive resolution (Fase 3): after ~90 frames, if the smoothed frame time stays above
+// 25 ms (< 40 fps), lower the pixel ratio by 0.25 (never below 1) and wait 120 frames.
+export function adaptivePixelRatio(renderer) {
+  let n = 0, avg = 1 / 60, cool = 0;
+  return (dt) => {
+    if (!dt) return;
+    avg += (dt - avg) * 0.05;
+    if (++n < 90 || --cool > 0) return;
+    const pr = renderer.getPixelRatio();
+    if (avg > 0.025 && pr > 1) { renderer.setPixelRatio(Math.max(1, pr - 0.25)); cool = 120; avg = 1 / 60; }
+  };
+}
+
 export function createRenderer(maxDpr) {
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
@@ -91,6 +104,8 @@ export function mountBrand(hosts) {
   if (!hosts.length) return () => {};
   let renderer;
   try { renderer = createRenderer(1.75); } catch { return () => {}; }
+  const fit = adaptivePixelRatio(renderer);
+  let shown = null; // host whose fallback is already hidden (avoid DOM writes every frame)
   const scene = new THREE.Scene();
   const disposables = [];
   const track = (x) => { disposables.push(x); return x; };
@@ -270,8 +285,8 @@ export function mountBrand(hosts) {
     if (preset !== 'cta') { purple.emissiveIntensity = 0.9; lineMat.opacity = 0.9; }
     snap = false;
     renderer.render(scene, camera);
-    const f = fallbackOf(active); if (f) f.style.opacity = '0';
-    active.el.classList.add('is-live');
+    fit(dt);
+    if (shown !== active) { shown = active; const f = fallbackOf(active); if (f) f.style.opacity = '0'; active.el.classList.add('is-live'); }
     frame = requestAnimationFrame(render);
   }
   const resume = () => { last = 0; if (alive && visible && !document.hidden && !frame) frame = requestAnimationFrame(render); };

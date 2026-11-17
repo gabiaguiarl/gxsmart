@@ -30,7 +30,8 @@ export function createCommerce({Group,Physical,Basic,mesh,rbox,plane,torus,cyl,t
  mesh(rbox(.11,.35,.29,.045),dark,headphones,[side*.25,-.23,.025]);
  });
  // Shopping cart: open basket, handle, chassis and two wheels.
- const cart=make(1.04,-.62,.7);cart.rotation.y=-.28;cart.rotation.z=-.025;
+ // Fase 3: cart a bit smaller and lower so it no longer covers the storefront copy ("Entrega rápida").
+ const cart=make(1.04,-.8,.7);cart.scale.setScalar(.9);cart.rotation.y=-.28;cart.rotation.z=-.025;
  mesh(rbox(.94,.055,.62,.02),pearl,cart,[0,-.13,0]);
  [-.46,.46].forEach(x=>mesh(rbox(.045,.5,.62,.018),purple,cart,[x,.09,0]));
  [-.3,.3].forEach(z=>{
@@ -59,7 +60,7 @@ export function createCommerce({Group,Physical,Basic,mesh,rbox,plane,torus,cyl,t
  storefront.position.y=.35+Math.sin(t*.55)*.025;
  headphones.position.y=.23+Math.sin(t*.7+.5)*.07;
  headphones.rotation.y=-.14+Math.sin(t*.4)*.12;
- cart.position.y=-.62+Math.sin(t*.65+2)*.045;
+ cart.position.y=-.8+Math.sin(t*.65+2)*.045;
  cart.rotation.y=-.28+Math.sin(t*.35)*.1;
  receipt.position.y=-1.17+Math.sin(t*.6+1)*.025;
  }};

@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { gsap } from 'gsap';
 import { bus } from './motion/bus.js';
-import { createRenderer, createEnvironment, lightRig } from './scene.js';
+import { createRenderer, createEnvironment, lightRig, adaptivePixelRatio } from './scene.js';
 
 
 // Services stage (Refinamento 5.0): one object per service, built procedurally from a
@@ -20,6 +20,8 @@ export function mountServices(container, { fallback = null, kinds = ORDER } = {}
   if (!container) return () => {};
   let renderer;
   try { renderer = createRenderer(1.5); } catch { return () => {}; }
+  const fit = adaptivePixelRatio(renderer);
+  let shown = false;
   container.appendChild(renderer.domElement);
   const scene = new THREE.Scene();
   const disposables = [];
@@ -296,8 +298,8 @@ export function mountServices(container, { fallback = null, kinds = ORDER } = {}
     rim.intensity = 2.4;
     violet.position.set(Math.cos(time * 0.5) * 4.5, Math.sin(time * 0.35) * 2.2, 3);
     renderer.render(scene, camera);
-    if (fallbackNode) fallbackNode.style.opacity = '0';
-    container.classList.add('is-live');
+    fit(dt);
+    if (!shown) { shown = true; if (fallbackNode) fallbackNode.style.opacity = '0'; container.classList.add('is-live'); }
     frame = requestAnimationFrame(render);
   }
   const resume = () => { last = 0; if (alive && visible && !document.hidden && !frame) frame = requestAnimationFrame(render); };

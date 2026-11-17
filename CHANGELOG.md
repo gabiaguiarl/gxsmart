@@ -2,6 +2,20 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Fase 3: refinamento 3D
+
+**Resumo:** a cena 3D faz menos trabalho a cada quadro, reduz a resolução sozinha em computadores lentos e o carrinho do e-commerce não cobre mais o texto da loja. Nenhum modelo 3D foi criado ou trocado.
+
+**Melhorias**
+- Resolução adaptável nas duas cenas 3D (principal e serviços): se a animação ficar abaixo de cerca de 40 quadros por segundo, a resolução cai em passos de 0,25 até o mínimo de 1×. Com a animação a 60 quadros, nada muda.
+- Cena principal e cena de serviços: a imagem estática de reserva é escondida uma única vez quando o 3D aparece, em vez de ser alterada a cada quadro.
+- E-commerce: o carrinho ficou 10% menor e um pouco mais baixo, e "Compra segura · Entrega rápida" ficou legível.
+
+**Observações técnicas**
+- Teste com processador 8× mais lento e tela 2×: a resolução caiu de 1,75 para 1,50 e depois 1,25. Sem lentidão, ficou em 1,75 e a 60 quadros por segundo.
+- Celular e modo de movimento reduzido continuam usando as imagens estáticas, sem WebGL.
+- Ainda aparece um texto escuro e fraco atrás da loja 3D no card de e-commerce. A imagem de reserva está escondida, então ele vem da própria cena; fica para investigar depois.
+
 ## 17/11/2026 — Fase 2: motion design
 
 **Resumo:** menos rolagem presa nas duas seções fixas da home e título de vendas visível desde a entrada da seção. A sequência das animações, o 3D e o visual continuam iguais.

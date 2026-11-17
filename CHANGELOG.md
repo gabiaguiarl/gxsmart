@@ -2,6 +2,27 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Serviços: direção de arte harmonizada com a homepage
+
+**Resumo:** com as dez composições integradas, a seção de serviços parecia uma vitrine à parte (fundos roxos, dez ícones roxos preenchidos e brilhando, palco com grade, brilho e anel roxos fortes). O refinamento aproxima a seção da linguagem do restante do site: preto predominante, linhas finas e roxo só como acento. Estrutura, textos, imagens e interações preservados; apenas CSS.
+
+**Card principal (palco)**
+- Fundo preto com leve tom roxo no centro (antes um radial roxo forte); grade e brilho roxos mais discretos; anel de progresso sem brilho; cantos roxos mantidos.
+- Nova linha fina separando a imagem do título, como nas outras seções.
+- Imagem do palco um pouco menor (até 420px, antes 470px), mais alta e levemente mais escura, deixando espaço negativo para a tipografia.
+
+**Cards secundários**
+- Superfície preta (#0B0B0E) com borda fina neutra; roxo apenas no card selecionado (borda e uma linha roxa no topo), sem brilho roxo.
+- Ícones com contorno roxo fino; o preenchimento roxo ficou só no serviço selecionado, sem brilho.
+- Hover: borda clara e sombra preta, elevação de 3px (antes 4px com brilho roxo).
+- Ilustração com 120px de altura (antes 132px), para o texto voltar a ser o centro do card. Nos cards não selecionados a imagem fica mais escura (só brilho, sem alterar as cores das marcas).
+
+**Motion**
+- Mais discreto e igual em todos os serviços: flutuação menor, inclinação menor (50% nos cards, 60% no palco) e avanço no hover de 14px nos cards e 16px no palco.
+
+**Usabilidade**
+- Serviço selecionado identificável pela borda roxa, pela linha no topo e pelo ícone preenchido; títulos e descrições com o mesmo contraste.
+
 ## 17/11/2026 — Design Digital: nova composição visual (10 de 10 serviços)
 
 **Resumo:** o serviço Design Digital (08 / Design & experiência) passou a usar a composição fornecida (notebook com interface de design e "Aa", paletas de cores, mesa digitalizadora com caneta, ferramenta vetorial, ícone de imagem, lâmpada, segundo "Aa" e caneca GX Smart), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição, numeração e CTA preservados. Com isso, os dez serviços usam as novas composições.

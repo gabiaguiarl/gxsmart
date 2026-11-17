@@ -68,7 +68,7 @@
   background:radial-gradient(closest-side,#000a,transparent);transform:translateZ(-1px)}
 /* Logos sempre com as cores originais, mesmo com o card inativo. */
 .sc-cards .sc-card:has(.market-scene) .service-visual{filter:none!important}
-.sc-cards .sc-card:has(.market-scene):not(.is-active):not(:hover):not(:focus-within) .service-visual{opacity:.85}
+.sc-cards .sc-cards .sc-card:has(.market-scene):not(.is-active):not(:hover):not(:focus-within) .service-visual{opacity:.85}
 @media (prefers-reduced-motion:no-preference){
   .market-float{animation:market-float 6.5s ease-in-out infinite}
   .market-shadow{animation:market-shadow 6.5s ease-in-out infinite}
@@ -191,3 +191,49 @@
   --scene-mask:radial-gradient(ellipse 62% 70% at 50% 50%,#000 70%,transparent 100%);
   --scene-fade:linear-gradient(to bottom,transparent 7%,#000 14%,#000 80%,transparent 86%)}
 @media (max-width:599px){.sc-stage .svc-fallback-item .market-scene.scene-design{height:112px!important}}
+
+/* ═══ Direção de arte — serviços integrados à linguagem da homepage ═══
+   Preto predominante, linhas finas, roxo só como acento (seleção, progresso, cantos).
+   Só apresentação: estrutura, textos, imagens e interações preservados. */
+
+/* Palco (card principal): fundo preto, grade e brilho roxos bem discretos. */
+.sc-visual{background:radial-gradient(120% 85% at 50% 38%,#12091a 0%,#08070b 52%,#050505 100%);
+  box-shadow:inset 0 0 0 1px #ffffff0a,0 40px 100px -60px #000}
+.sc-stage .stage-grid{opacity:.28}
+.sc-stage .stage-glow{opacity:.4}
+.sc-stage .stage-orbits circle{stroke:#ffffff0f}
+.sc-stage .stage-orbits .so-progress{filter:none}
+.sc-stage .stage-corner{border-color:#7809acb3}
+/* Linha editorial fina separando a imagem do título, como nas outras seções. */
+.sc-visual::after{content:"";position:absolute;left:24px;right:24px;bottom:128px;height:1px;background:#ffffff14;pointer-events:none;z-index:2}
+/* Imagem do palco: um pouco menor e mais alta, deixando espaço negativo para a tipografia. */
+.sc-stage .svc-fallback-item:has(.market-scene){padding-bottom:96px}
+@media (min-width:900px){.sc-stage .svc-fallback-item .market-scene{width:min(76%,420px)!important}}
+.sc-stage .market-scene .market-art{filter:brightness(.92)}
+
+/* Cards secundários: superfície preta, borda fina neutra; roxo apenas no card selecionado. */
+.sc-cards .sc-card{background:#0b0b0e;border-color:#ffffff14;border-radius:12px}
+.sc-cards .sc-card.is-active{background:#0c0a10;border-color:#7809ac;box-shadow:inset 0 2px 0 #7809ac}
+.sc-cards .sc-card:hover,.sc-cards .sc-card:focus-within{border-color:#ffffff38;box-shadow:0 22px 50px -34px #000}
+.sc-cards .sc-card.is-active:is(:hover,:focus-within){border-color:#7809ac;box-shadow:inset 0 2px 0 #7809ac,0 22px 50px -34px #000}
+.sc-cards .sc-card:is(:hover,:focus-within){translate:0 -3px!important}
+.sc-cards .sc-card:after{background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),#7809ac14,transparent 70%)}
+/* Ícones: contorno roxo fino; preenchimento só no serviço selecionado. Sem brilho. */
+.sc-cards .icon-box{background:transparent;border:1px solid #7809ac80;color:#c58cf0}
+.sc-cards .sc-card.is-active .icon-box{background:#7809ac;border-color:#7809ac;color:#fff}
+.sc-cards .service-card:is(:hover,.is-active) .icon-box{box-shadow:none}
+/* Ilustração com altura um pouco menor, para o texto voltar a ser o centro do card. */
+.sc-cards .service-visual{height:120px!important;margin:10px 0 12px!important}
+/* Cards não selecionados: imagem mais escura (só brilho, sem mexer nas cores das marcas). */
+.sc-cards .sc-card:has(.market-scene):not(.is-active):not(:hover):not(:focus-within) .service-visual{opacity:1;filter:brightness(.72)!important}
+.sc-cards .service-copy p{color:#bdbdbd}
+
+/* Motion mais discreto, igual em todos os serviços. */
+.sc-cards .market-scene{--float-amp:.7;--tilt-k:.5;--hover-z:14px}
+.sc-stage .svc-fallback-item .market-scene{--float-amp:1.2;--tilt-k:.6;--hover-z:16px}
+
+@media (max-width:899px){
+  .sc-visual::after{display:none}
+  .sc-stage .svc-fallback-item:has(.market-scene){padding-bottom:0}
+  .sc-stage .market-scene .market-art{filter:none}
+}

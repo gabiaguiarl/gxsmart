@@ -35,6 +35,7 @@ const SCENES = {
   marketplace: { cls: 'visual-marketplace market-scene', src: '/assets/marketplaces/marketplace-composition.webp', h: 676 },
   commerce: { cls: 'visual-commerce market-scene scene-commerce', src: '/assets/commerce/commerce-composition.webp', h: 640 },
   live: { cls: 'visual-live market-scene scene-live', src: '/assets/live/live-composition.webp', h: 678 },
+  website: { cls: 'visual-website market-scene scene-website', src: '/assets/website/website-composition.webp', h: 640 },
   marketing: { cls: 'visual-marketing market-scene scene-marketing', src: '/assets/marketing/marketing-composition.webp', h: 640 },
 };
 export function cardVisual(kind) {

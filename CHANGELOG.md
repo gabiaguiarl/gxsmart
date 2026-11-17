@@ -2,6 +2,20 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Desenvolvimento de Sites: nova composição visual
+
+**Resumo:** o serviço Desenvolvimento de Sites (05 / Presença digital) passou a usar a composição fornecida (notebook com o site GX Smart, ícones de código, imagem, "Aa", paleta, WordPress e globo), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição e CTA preservados.
+
+**Melhorias**
+- Imagem otimizada: 1254×1254 (165 KB) → 640×640 WebP (52 KB), carregada sob demanda.
+- Card grande (desktop): composição com ~447×407px, centralizada acima de "Desenvolvimento de Sites"; a base se dissolve logo abaixo dos ícones WordPress e globo. Cena WebGL antiga oculta e não desenhada com o serviço ativo.
+- Card pequeno: imagem ~25% maior, centrada no notebook.
+- Tablet: 150px centralizado no palco. Celular: 100px à direita, menor que nos outros serviços para deixar folga para o título longo.
+- Movimento: flutuação, inclinação, avanço no hover e transição ao selecionar, reaproveitados; parado com movimento reduzido.
+
+**Observações técnicas**
+- Os serviços 01 a 05 usam composições em HTML; a cena WebGL só é desenhada para os serviços 06 a 10.
+
 ## 17/11/2026 — E-commerce: nova composição visual
 
 **Resumo:** o serviço E-commerce (02 / Loja virtual) passou a usar a composição fornecida (notebook com a loja, fone, carrinho com sacola e caixa, ícones de sacola e %, selo "Compra confirmada" e escudo), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição e CTA preservados.

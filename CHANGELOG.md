@@ -2,6 +2,20 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Produção Audiovisual: nova composição visual
+
+**Resumo:** o serviço Produção Audiovisual (07 / Vídeo & conteúdo) passou a usar a composição fornecida (câmera GX Smart com lente em destaque, notebook com software de edição, claquete, película, onda de áudio, fones e pedestal), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição e CTA preservados.
+
+**Melhorias**
+- Imagem otimizada: 1254×1254 (145 KB) → 640×640 WebP (50 KB), carregada sob demanda.
+- Card grande (desktop): composição com ~447×416px, centralizada acima de "Produção Audiovisual", com a câmera como protagonista; o pedestal fica e só o reflexo do piso se dissolve. Cena WebGL antiga oculta e não desenhada com o serviço ativo.
+- Card pequeno: imagem ~35% maior, centrada na câmera e na lente, com notebook, claquete, fones e ícones ainda visíveis. Como o fundo desta imagem é um pouco mais claro, a máscara é mais fechada nas laterais e há fade no topo, para não aparecer um retângulo.
+- Tablet: 150px centralizado no palco. Celular: 112px à direita, sem sobrepor o título e o subtítulo.
+- Movimento: flutuação, inclinação, avanço no hover e transição ao selecionar, reaproveitados; parado com movimento reduzido.
+
+**Observações técnicas**
+- Os serviços 01 a 07 usam composições em HTML; a cena WebGL só é desenhada para os serviços 08 a 10.
+
 ## 17/11/2026 — Social Media: nova composição visual
 
 **Resumo:** o serviço Social Media (06 / Conteúdo & conexão) passou a usar a composição fornecida (smartphone com publicação GX Smart, Instagram, Facebook, TikTok, YouTube, curtidas, seguidores, gráfico, megafone, alvo e pedestal), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição e CTA preservados.

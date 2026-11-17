@@ -67,8 +67,8 @@
 .market-shadow{position:absolute;left:50%;bottom:4px;width:44%;height:14px;margin-left:-22%;border-radius:50%;
   background:radial-gradient(closest-side,#000a,transparent);transform:translateZ(-1px)}
 /* Logos sempre com as cores originais, mesmo com o card inativo. */
-.sc-cards :is(.card-marketplace,.card-commerce,.card-live,.card-marketing,.card-website,.card-social) .service-visual{filter:none!important}
-.sc-cards .sc-card:is(.card-marketplace,.card-commerce,.card-live,.card-marketing,.card-website,.card-social):not(.is-active):not(:hover):not(:focus-within) .service-visual{opacity:.85}
+.sc-cards :is(.card-marketplace,.card-commerce,.card-live,.card-marketing,.card-website,.card-social,.card-video) .service-visual{filter:none!important}
+.sc-cards .sc-card:is(.card-marketplace,.card-commerce,.card-live,.card-marketing,.card-website,.card-social,.card-video):not(.is-active):not(:hover):not(:focus-within) .service-visual{opacity:.85}
 @media (prefers-reduced-motion:no-preference){
   .market-float{animation:market-float 6.5s ease-in-out infinite}
   .market-shadow{animation:market-shadow 6.5s ease-in-out infinite}
@@ -145,3 +145,16 @@
 /* Card pequeno: ~25% maior, centrado no smartphone e nos ícones das redes. */
 .sc-cards .scene-social{--crop-px:33px;--art-shift:-12px;--scene-fade:linear-gradient(to bottom,#000 81%,transparent 87%)}
 @media (max-width:599px){.sc-stage .svc-fallback-item .market-scene.scene-social{height:112px!important}}
+
+/* Produção Audiovisual — mesmo componente. Fones e película perto das bordas: máscara aberta nas
+   laterais; o pedestal fica e só o reflexo do piso se dissolve. */
+.scene-video{--scene-mask:radial-gradient(ellipse 74% 66% at 50% 47%,#000 72%,transparent 100%);
+  --scene-fade:linear-gradient(to bottom,#000 88%,transparent 93%);
+  --crop-px:12px;--frame-ratio:640/595;--art-h:107.5%}
+/* Card pequeno: ~35% maior, centrado na câmera e na lente (notebook e claquete parcialmente visíveis). */
+/* O fundo desta imagem é um pouco mais claro: máscara mais fechada nas laterais e fade também no topo
+   (o zoom corta a parte de cima), para não aparecer um retângulo no card. */
+.sc-cards .scene-video{--crop-px:46px;--art-shift:-24px;
+  --scene-mask:radial-gradient(ellipse 58% 70% at 50% 52%,#000 68%,transparent 100%);
+  --scene-fade:linear-gradient(to bottom,transparent 13%,#000 22%,#000 81%,transparent 87%)}
+@media (max-width:599px){.sc-stage .svc-fallback-item .market-scene.scene-video{height:112px!important}}

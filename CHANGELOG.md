@@ -2,6 +2,17 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Marketing Digital: nova composição visual
+
+**Resumo:** o serviço Marketing Digital (04 / Estratégia & campanhas) passou a usar a composição fornecida (notebook com gráficos, alvo e seta, megafone, cards flutuantes de métricas, anúncio e calendário), no card pequeno e no card grande. Mesmo componente de Marketplaces e Lives; nome, descrição e CTA preservados. Gestão de Tráfego (09) não foi alterado.
+
+**Melhorias**
+- Imagem otimizada: 1254×1254 (136 KB) → 640×640 WebP (44 KB), carregada sob demanda.
+- Card grande (desktop): composição com ~447×393px, centralizada acima de "Marketing Digital"; o reflexo do piso se dissolve abaixo do notebook. Cena WebGL antiga oculta e não desenhada com o serviço ativo.
+- Card pequeno: imagem ~25% maior, centrada no notebook e nos gráficos.
+- Tablet: 150px centralizado no palco. Celular: 112px à direita, com folga para o título e o subtítulo.
+- Movimento: flutuação, inclinação, avanço no hover e transição ao selecionar, reaproveitados; parado com movimento reduzido.
+
 ## 17/11/2026 — Lives de Vendas: nova composição visual
 
 **Resumo:** o serviço Lives de Vendas passou a usar a composição fornecida (celular com live, apresentadora, produto, ring light, sacola GX Smart, selo LIVE e carrinho), no card pequeno e no card grande. Mesmo componente e animações de Marketplaces; nenhuma imagem ou modelo novo gerado.

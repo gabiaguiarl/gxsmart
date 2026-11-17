@@ -34,6 +34,7 @@ export function connectionGrid() {
 const SCENES = {
   marketplace: { cls: 'visual-marketplace market-scene', src: '/assets/marketplaces/marketplace-composition.webp', h: 676 },
   live: { cls: 'visual-live market-scene scene-live', src: '/assets/live/live-composition.webp', h: 678 },
+  marketing: { cls: 'visual-marketing market-scene scene-marketing', src: '/assets/marketing/marketing-composition.webp', h: 640 },
 };
 export function cardVisual(kind) {
   const sc = SCENES[kind];

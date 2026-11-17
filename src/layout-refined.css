@@ -52,9 +52,9 @@
    dissolve no card e as cores (mais claras) dos logos não mudam. */
 .sc-cards .card-marketplace .market-scene{perspective:720px;overflow:hidden;mix-blend-mode:lighten}
 .market-tilt{position:relative;height:100%;transform-style:preserve-3d;
-  transform:rotateX(calc(var(--tilt-x,0deg) * .7)) rotateY(calc(var(--tilt-y,0deg) * .7)) translateZ(0);
+  transform:rotateX(calc(var(--tilt-x,0deg) * var(--tilt-k,.7))) rotateY(calc(var(--tilt-y,0deg) * var(--tilt-k,.7))) translateZ(0);
   transition:transform .7s cubic-bezier(.16,1,.3,1)}
-.card-marketplace:is(:hover,:focus-within) .market-tilt{transform:rotateX(calc(var(--tilt-x,0deg) * .7)) rotateY(calc(var(--tilt-y,0deg) * .7)) translateZ(22px)}
+.card-marketplace:is(:hover,:focus-within) .market-tilt,.sc-stage:hover .market-scene .market-tilt{transform:rotateX(calc(var(--tilt-x,0deg) * var(--tilt-k,.7))) rotateY(calc(var(--tilt-y,0deg) * var(--tilt-k,.7))) translateZ(var(--hover-z,22px))}
 .market-float{height:100%;display:flex;justify-content:center;align-items:flex-start}
 /* 150px de altura num quadro de 132px: só o reflexo do piso (base da imagem) fica de fora. */
 /* Máscara radial na própria imagem: o fundo escuro dela se dissolve no card, sem bordas retas;
@@ -72,6 +72,28 @@
   .market-float{animation:market-float 6.5s ease-in-out infinite}
   .market-shadow{animation:market-shadow 6.5s ease-in-out infinite}
 }
-@keyframes market-float{0%,100%{transform:translateY(2px)}50%{transform:translateY(-4px)}}
+@keyframes market-float{0%,100%{transform:translateY(calc(var(--float-amp,1) * 2px))}50%{transform:translateY(calc(var(--float-amp,1) * -4px))}}
 @keyframes market-shadow{0%,100%{opacity:.9;scale:1}50%{opacity:.6;scale:.88}}
 @media (prefers-reduced-motion:reduce){.market-tilt{transform:none!important;transition:none}}
+
+/* Card grande (palco à esquerda): mesma composição, em destaque. Quando Marketplaces está ativo, o
+   canvas WebGL some (e deixa de desenhar) e a composição HTML aparece no lugar dos três ícones 3D. */
+.sc-stage .stage-canvas{transition:opacity .45s cubic-bezier(.16,1,.3,1)}
+.sc-stage:has(.svc-fallback-item.is-active .market-scene) .svc-fallback{opacity:1!important}
+.sc-stage:has(.svc-fallback-item.is-active .market-scene) .stage-canvas{opacity:0}
+.sc-stage .svc-fallback-item:has(.market-scene){padding-bottom:64px}
+.sc-stage .svc-fallback-item .market-scene{--float-amp:2;--tilt-k:1;--hover-z:30px;
+  width:min(84%,470px)!important;height:auto!important;aspect-ratio:640/595;margin:0!important;transform:none!important;
+  overflow:hidden;perspective:900px;mix-blend-mode:lighten}
+/* Quadro na proporção 640/595 e imagem a 113,6% da altura: o mesmo recorte (só o piso) do card pequeno. */
+.sc-stage .market-scene .market-art{height:113.6%}
+.sc-stage .market-scene .market-shadow{bottom:2%}
+@media (max-width:899px){
+  .sc-stage .svc-fallback-item:has(.market-scene){padding-bottom:0}
+  .sc-stage .svc-fallback-item .market-scene{--float-amp:1;width:auto!important;height:150px!important;aspect-ratio:640/595}
+}
+@media (max-width:599px){
+  /* Celular: composição à direita e acima do título/subtítulo do palco, sem sobrepor o texto. */
+  .sc-stage .svc-fallback-item:has(.market-scene){place-items:start end;padding:10px 6px 0 0}
+  .sc-stage .svc-fallback-item .market-scene{height:128px!important}
+}

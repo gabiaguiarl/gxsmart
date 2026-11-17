@@ -402,7 +402,7 @@ function interactions() {
     offs.push(() => { gsap.killTweensOf(el); gsap.set(el, { clearProps: 'transform' }); });
   });
   // Service-card tilt drives the 3D illustration plane.
-  qa('.service-card').forEach((card) => {
+  qa('.service-card, .sc-stage').forEach((card) => { // the stage reuses the same tilt variables (Marketplace composition)
     on(card, 'pointermove', (e) => { const r = card.getBoundingClientRect(); card.style.setProperty('--tilt-x', `${((e.clientY - r.top - r.height / 2) / r.height) * -9}deg`); card.style.setProperty('--tilt-y', `${((e.clientX - r.left - r.width / 2) / r.width) * 12}deg`); card.style.setProperty('--mx', `${e.clientX - r.left}px`); card.style.setProperty('--my', `${e.clientY - r.top}px`); });
     on(card, 'pointerleave', () => { card.style.removeProperty('--tilt-x'); card.style.removeProperty('--tilt-y'); });
   });

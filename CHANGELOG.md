@@ -2,6 +2,20 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Card Marketplace: composição também no card grande
+
+**Resumo:** o card grande à esquerda (palco dos serviços) passou a mostrar a mesma composição de marketplaces do card pequeno, no lugar dos três ícones 3D antigos. Asset reutilizado; nenhuma imagem ou modelo novo.
+
+**Melhorias**
+- Desktop: com Marketplaces ativo, a cena WebGL dos três ícones fica oculta (e deixa de ser desenhada) e a composição aparece em destaque, com cerca de 447×416px num palco de 534×780px. Fica centralizada acima do título "Marketplaces" e do subtítulo, sem encostar no texto. Ao trocar de serviço, as duas camadas fazem um cross-fade e as outras cenas 3D voltam normalmente.
+- Movimento: as mesmas animações do card pequeno, um pouco mais perceptíveis no palco (flutuação 2×, inclinação 100% em vez de 70%, avanço de 30px no hover). A inclinação reaproveita o código de ponteiro que já existia para os cards, agora aplicado também ao palco.
+- Tablet (até 899px): composição com 150px de altura no palco fixo, centralizada.
+- Celular (até 599px): composição com 128px no canto superior direito do palco, acima do título e do subtítulo, sem sobreposição e sem rolagem lateral.
+- Card pequeno: sem mudança de tamanho; as animações passaram a usar variáveis (`--float-amp`, `--tilt-k`, `--hover-z`) compartilhadas com o palco.
+
+**Observações técnicas**
+- O palco usava a versão HTML dos três ícones só como reserva para celular e movimento reduzido; agora essa versão também é a composição, então celular e movimento reduzido mostram a imagem nova, parada no modo reduzido.
+
 ## 17/11/2026 — Card Marketplace: visual 3D animado
 
 **Resumo:** o card "Marketplaces" da lista de serviços passou a usar a composição de referência (Mercado Livre, Shopee, TikTok Shop, celular, caixa, pino e órbitas roxas), com movimento 2.5D. Os outros cards e o palco 3D grande não mudaram.

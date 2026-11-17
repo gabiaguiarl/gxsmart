@@ -38,6 +38,7 @@ const SCENES = {
   website: { cls: 'visual-website market-scene scene-website', src: '/assets/website/website-composition.webp', h: 640 },
   social: { cls: 'visual-social market-scene scene-social', src: '/assets/social/social-composition.webp', h: 640 },
   video: { cls: 'visual-video market-scene scene-video', src: '/assets/video/video-composition.webp', h: 640 },
+  traffic: { cls: 'visual-traffic market-scene scene-traffic', src: '/assets/traffic/traffic-composition.webp', h: 640 },
   marketing: { cls: 'visual-marketing market-scene scene-marketing', src: '/assets/marketing/marketing-composition.webp', h: 640 },
 };
 export function cardVisual(kind) {

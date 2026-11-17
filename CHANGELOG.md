@@ -2,6 +2,20 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Gestão de Tráfego (Tráfego Pago): nova composição visual
+
+**Resumo:** o serviço Gestão de Tráfego (09 / Mídia & performance), solicitado como "Tráfego Pago", passou a usar a composição fornecida (painel de anúncio "Seu produto" com fone, gráficos de crescimento, alvo e seta, megafone e ícones de público, desempenho e meta sobre o pedestal), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição, numeração e CTA preservados.
+
+**Melhorias**
+- Imagem otimizada: 1254×1254 (152 KB) → 640×640 WebP (52 KB), carregada sob demanda.
+- Card grande (desktop): composição com ~447×416px, centralizada acima de "Gestão de Tráfego"; o pedestal com os três ícones fica e só o reflexo do piso se dissolve. Cena WebGL antiga oculta e não desenhada com o serviço ativo.
+- Card pequeno: imagem ~30% maior, centrada no painel do anúncio e no gráfico, com máscara mais fechada e fade no topo para integrar ao card.
+- Tablet: 150px centralizado no palco. Celular: 112px à direita, sem sobrepor o título e o subtítulo.
+- Movimento: flutuação, inclinação, avanço no hover e transição ao selecionar, reaproveitados; parado com movimento reduzido.
+
+**Observações técnicas**
+- A cena WebGL agora só é desenhada para Design Digital (08) e Landing Pages (10); conferido que Design Digital continua renderizando.
+
 ## 17/11/2026 — Produção Audiovisual: nova composição visual
 
 **Resumo:** o serviço Produção Audiovisual (07 / Vídeo & conteúdo) passou a usar a composição fornecida (câmera GX Smart com lente em destaque, notebook com software de edição, claquete, película, onda de áudio, fones e pedestal), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição e CTA preservados.

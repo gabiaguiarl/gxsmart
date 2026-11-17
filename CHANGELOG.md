@@ -2,6 +2,21 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Card Marketplace: visual 3D animado
+
+**Resumo:** o card "Marketplaces" da lista de serviços passou a usar a composição de referência (Mercado Livre, Shopee, TikTok Shop, celular, caixa, pino e órbitas roxas), com movimento 2.5D. Os outros cards e o palco 3D grande não mudaram.
+
+**Melhorias**
+- Imagem de referência otimizada: 1220×1289 (140 KB) → 640×676 WebP (50 KB), carregada sob demanda.
+- Integração com o fundo: máscara radial nas bordas e `mix-blend-mode: lighten`, que dissolve o fundo escuro da imagem sem alterar as cores dos logos. Logos sempre com as cores originais, mesmo com o card inativo.
+- Movimento: flutuação vertical suave (6,5 s, ±3 px) com sombra que acompanha; inclinação pelo ponteiro reaproveitando as variáveis `--tilt-x`/`--tilt-y` que os cards já recebem; no hover ou foco a composição avança levemente (`translateZ`) e volta ao estado inicial ao sair. Tudo em CSS, sem novo laço JavaScript.
+- Mesma altura de ilustração dos outros cards; a imagem ocupa o quadro + 18 px, e só o reflexo do piso fica de fora.
+
+**Limitações**
+- A imagem é uma camada única: o conjunto inclina e flutua junto, mas os objetos não se movem de forma independente. Isso exigiria cada objeto em arquivo separado (logos, celular, caixa, pino).
+- Celular e tablet (até 899px) não mostram ilustrações nos cards de serviço, então a composição aparece a partir de 900px. A versão estática do palco no celular continua com os três logos.
+- Com movimento reduzido: sem flutuação, sem inclinação e sem transição.
+
 ## 17/11/2026 — Fase 5: acabamento final
 
 **Resumo:** auditoria de acessibilidade, verificação de rolagem lateral em 4 tamanhos de tela e correção de três problemas de layout no tablet.

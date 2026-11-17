@@ -27,6 +27,13 @@ export function techCube() {
 export function connectionGrid() {
   return `<svg class="connection-grid" viewBox="0 0 800 180" fill="none" aria-hidden="true"><path pathLength="1" d="M0 90h120l80-60h150l100 120h150l80-60h120M120 90l80 60h150L450 30h150l80 60M200 30v120M350 30v120M450 30v120M600 30v120"/>${[[120,90],[200,30],[200,150],[350,30],[350,150],[450,30],[450,150],[600,30],[600,150],[680,90]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4"/>`).join('')}</svg>`;
 }
+// Marketplace card (service list only): layered 2.5D composition from the supplied reference image.
+// The stage fallback keeps serviceVisual('marketplace').
+export function cardVisual(kind) {
+  if (kind !== 'marketplace') return serviceVisual(kind);
+  return '<div class="service-visual visual-marketplace market-scene" aria-hidden="true"><div class="market-tilt"><span class="market-shadow"></span><div class="market-float"><img class="market-art" src="/assets/marketplaces/marketplace-composition.webp" alt="" width="640" height="676" loading="lazy" decoding="async"></div></div></div>';
+}
+
 export function serviceVisual(kind) {
   const visuals = {
     website: '<div class="mini-browser"><div class="mini-chrome"><i></i><i></i><i></i></div><div class="mini-site"><span>SEU PRÓXIMO<br>GRANDE PASSO.</span><i></i><b>VAMOS CRIAR ↗</b></div></div><div class="floating-label">&lt; / &gt;</div>',
@@ -190,7 +197,7 @@ export function kineticStatement(words) {
 // is a separate link. No scroll-driven selection: the page scrolls naturally.
 export function servicesShowcase(services) {
   const n = String(services.length).padStart(2, '0');
-  const cards = services.map(([title, description, tag, icon, kind], i) => `<article class="service-card sc-card card-${kind}${i ? '' : ' is-active'}" data-index="${i}"><div class="service-top"><span class="icon-box">${techIcon(icon)}</span><span class="service-index">${String(i + 1).padStart(2, '0')} / ${tag}</span></div>${serviceVisual(kind)}<div class="service-copy"><h3><button class="sc-select" type="button" aria-pressed="${i === 0}">${title}</button></h3><p>${description}</p></div><a class="service-action" href="#contato" data-service="${title}" aria-label="Solicitar orçamento de ${title}">Solicitar orçamento <span aria-hidden="true">↗</span></a></article>`).join('');
+  const cards = services.map(([title, description, tag, icon, kind], i) => `<article class="service-card sc-card card-${kind}${i ? '' : ' is-active'}" data-index="${i}"><div class="service-top"><span class="icon-box">${techIcon(icon)}</span><span class="service-index">${String(i + 1).padStart(2, '0')} / ${tag}</span></div>${cardVisual(kind)}<div class="service-copy"><h3><button class="sc-select" type="button" aria-pressed="${i === 0}">${title}</button></h3><p>${description}</p></div><a class="service-action" href="#contato" data-service="${title}" aria-label="Solicitar orçamento de ${title}">Solicitar orçamento <span aria-hidden="true">↗</span></a></article>`).join('');
   const visuals = services.map(([, , , , kind], i) => `<div class="svc-fallback-item${i ? '' : ' is-active'}">${serviceVisual(kind)}</div>`).join('');
   const titles = services.map(([title], i) => `<strong class="${i ? '' : 'is-active'}">${title}</strong>`).join('');
   const tags = services.map(([, , tag], i) => `<i class="${i ? '' : 'is-active'}">${tag}</i>`).join('');

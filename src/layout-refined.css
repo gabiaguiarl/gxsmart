@@ -44,3 +44,34 @@
 }
 /* Descrição dos cards de serviço usa a largura disponível nos cards largos do tablet. */
 .sc-cards .service-copy p{max-width:62ch}
+
+/* Card Marketplace — composição 2.5D a partir da imagem de referência (uma única camada).
+   Movimento: flutuação suave (CSS), inclinação pelo ponteiro reaproveitando --tilt-x/--tilt-y
+   (já definidos pelos cards no desktop) e leve avanço no hover. Sem laço JavaScript novo. */
+/* lighten: só os pixels mais escuros que o fundo do card são trocados; o fundo escuro da imagem se
+   dissolve no card e as cores (mais claras) dos logos não mudam. */
+.sc-cards .card-marketplace .market-scene{perspective:720px;overflow:hidden;mix-blend-mode:lighten}
+.market-tilt{position:relative;height:100%;transform-style:preserve-3d;
+  transform:rotateX(calc(var(--tilt-x,0deg) * .7)) rotateY(calc(var(--tilt-y,0deg) * .7)) translateZ(0);
+  transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.card-marketplace:is(:hover,:focus-within) .market-tilt{transform:rotateX(calc(var(--tilt-x,0deg) * .7)) rotateY(calc(var(--tilt-y,0deg) * .7)) translateZ(22px)}
+.market-float{height:100%;display:flex;justify-content:center;align-items:flex-start}
+/* 150px de altura num quadro de 132px: só o reflexo do piso (base da imagem) fica de fora. */
+/* Máscara radial na própria imagem: o fundo escuro dela se dissolve no card, sem bordas retas;
+   logos, celular, caixa e pino ficam dentro da área opaca. */
+/* Quadro + 18px (150px num quadro de 132px): só o reflexo do piso, na base da imagem, fica de fora. */
+.market-art{display:block;height:calc(100% + 18px);width:auto;max-width:none;user-select:none;-webkit-user-drag:none;
+  -webkit-mask-image:radial-gradient(ellipse 58% 56% at 50% 46%,#000 70%,transparent 100%);
+          mask-image:radial-gradient(ellipse 58% 56% at 50% 46%,#000 70%,transparent 100%)}
+.market-shadow{position:absolute;left:50%;bottom:4px;width:44%;height:14px;margin-left:-22%;border-radius:50%;
+  background:radial-gradient(closest-side,#000a,transparent);transform:translateZ(-1px)}
+/* Logos sempre com as cores originais, mesmo com o card inativo. */
+.sc-cards .card-marketplace .service-visual{filter:none!important}
+.sc-cards .sc-card.card-marketplace:not(.is-active):not(:hover):not(:focus-within) .service-visual{opacity:.85}
+@media (prefers-reduced-motion:no-preference){
+  .market-float{animation:market-float 6.5s ease-in-out infinite}
+  .market-shadow{animation:market-shadow 6.5s ease-in-out infinite}
+}
+@keyframes market-float{0%,100%{transform:translateY(2px)}50%{transform:translateY(-4px)}}
+@keyframes market-shadow{0%,100%{opacity:.9;scale:1}50%{opacity:.6;scale:.88}}
+@media (prefers-reduced-motion:reduce){.market-tilt{transform:none!important;transition:none}}

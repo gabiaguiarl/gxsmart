@@ -32,3 +32,15 @@
   .sales-cta span{transition:transform .3s cubic-bezier(.16,1,.3,1)}
   .sales-cta:hover span,.sales-cta:focus-visible span{transform:translate(2px,-2px)}
 }
+
+/* Fase 5 — tablet (600–899px) */
+@media (max-width:899px){
+  /* "Cada marca. Um universo." alinhado à esquerda, como no celular (antes ficava preso à direita). */
+  .portfolio .section-title{align-items:stretch}
+  .portfolio .section-title h2{text-align:left}
+  .portfolio .section-title>p{margin:0;max-width:52ch}
+  /* Legenda do cubo saía cortada pela borda direita. */
+  .process-object>span{display:none}
+}
+/* Descrição dos cards de serviço usa a largura disponível nos cards largos do tablet. */
+.sc-cards .service-copy p{max-width:62ch}

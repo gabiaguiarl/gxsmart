@@ -2,6 +2,25 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Fase 5: acabamento final
+
+**Resumo:** auditoria de acessibilidade, verificação de rolagem lateral em 4 tamanhos de tela e correção de três problemas de layout no tablet.
+
+**Correções (tablet, 600–899px)**
+- "Cada marca. Um universo." ficava preso à direita, com a coluna esquerda vazia; agora fica alinhado à esquerda, como no celular.
+- A legenda "DO CONCEITO À CONSTRUÇÃO" do cubo da seção de processo saía cortada pela borda direita; agora fica oculta, como já acontecia no celular.
+- A descrição dos cards de serviço ocupava só metade dos cards largos; agora usa a largura disponível (até 62 caracteres por linha).
+
+**Auditoria (sem problemas encontrados)**
+- Navegação por Tab passa pelos 66 elementos clicáveis em ordem lógica e todos mostram contorno de foco de 2px.
+- Todas as imagens têm texto alternativo, todos os campos do formulário têm rótulo, não há IDs duplicados e o idioma da página é `pt-BR`.
+- Contraste: só o "EXPERIÊNCIAS." vazado do título principal ficou abaixo do mínimo, e isso é intencional (texto só com contorno).
+- Sem rolagem lateral em 1440, 1024, 768, 390 e 360px de largura.
+
+**Observações técnicas**
+- O texto escuro atrás da loja 3D (anotado na Fase 3) era um quadro capturado no meio da transição entre duas cenas de serviço. Com a cena parada ele não aparece.
+- A seção branca "A conexão faz a diferença" usa fundo claro (#f6f5f8), fora da paleta oficial. Não foi alterada; depende de aprovação.
+
 ## 17/11/2026 — Fase 4: serviços e área comercial
 
 **Resumo:** cards de serviço mais legíveis e com mais profundidade, efeito de hover consertado, mesmo destaque para quem navega pelo teclado e botão de conversão "QUERO VENDER MAIS" com mais presença. Conteúdo, links e logos dos marketplaces preservados.

@@ -2,6 +2,20 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Social Media: nova composição visual
+
+**Resumo:** o serviço Social Media (06 / Conteúdo & conexão) passou a usar a composição fornecida (smartphone com publicação GX Smart, Instagram, Facebook, TikTok, YouTube, curtidas, seguidores, gráfico, megafone, alvo e pedestal), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição e CTA preservados.
+
+**Melhorias**
+- Imagem otimizada: 1254×1254 (166 KB) → 640×640 WebP (56 KB), carregada sob demanda.
+- Card grande (desktop): composição com ~447×416px, centralizada acima de "Social Media"; o pedestal fica visível e só o reflexo do piso se dissolve. Logos das redes com as cores originais. Cena WebGL antiga oculta e não desenhada com o serviço ativo.
+- Card pequeno: imagem ~25% maior, centrada no smartphone e nos ícones das redes.
+- Tablet: 150px centralizado no palco. Celular: 112px à direita, sem sobrepor o título e o subtítulo.
+- Movimento: flutuação, inclinação, avanço no hover e transição ao selecionar, reaproveitados; parado com movimento reduzido.
+
+**Observações técnicas**
+- Os serviços 01 a 06 usam composições em HTML; a cena WebGL só é desenhada para os serviços 07 a 10.
+
 ## 17/11/2026 — Desenvolvimento de Sites: nova composição visual
 
 **Resumo:** o serviço Desenvolvimento de Sites (05 / Presença digital) passou a usar a composição fornecida (notebook com o site GX Smart, ícones de código, imagem, "Aa", paleta, WordPress e globo), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição e CTA preservados.

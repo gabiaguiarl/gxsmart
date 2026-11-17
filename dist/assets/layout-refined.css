@@ -67,8 +67,8 @@
 .market-shadow{position:absolute;left:50%;bottom:4px;width:44%;height:14px;margin-left:-22%;border-radius:50%;
   background:radial-gradient(closest-side,#000a,transparent);transform:translateZ(-1px)}
 /* Logos sempre com as cores originais, mesmo com o card inativo. */
-.sc-cards :is(.card-marketplace,.card-commerce,.card-live,.card-marketing,.card-website) .service-visual{filter:none!important}
-.sc-cards .sc-card:is(.card-marketplace,.card-commerce,.card-live,.card-marketing,.card-website):not(.is-active):not(:hover):not(:focus-within) .service-visual{opacity:.85}
+.sc-cards :is(.card-marketplace,.card-commerce,.card-live,.card-marketing,.card-website,.card-social) .service-visual{filter:none!important}
+.sc-cards .sc-card:is(.card-marketplace,.card-commerce,.card-live,.card-marketing,.card-website,.card-social):not(.is-active):not(:hover):not(:focus-within) .service-visual{opacity:.85}
 @media (prefers-reduced-motion:no-preference){
   .market-float{animation:market-float 6.5s ease-in-out infinite}
   .market-shadow{animation:market-shadow 6.5s ease-in-out infinite}
@@ -136,3 +136,12 @@
 .sc-cards .scene-website{--crop-px:33px;--art-shift:-12px;--scene-fade:linear-gradient(to bottom,#000 83%,transparent 88%)}
 /* Celular: título longo ("Desenvolvimento de Sites"); composição menor para manter folga. */
 @media (max-width:599px){.sc-stage .svc-fallback-item .market-scene.scene-website{height:100px!important}}
+
+/* Social Media — mesmo componente. Ícones de redes perto das bordas (Facebook, YouTube): máscara
+   aberta nas laterais; o pedestal fica e só o reflexo do piso se dissolve. */
+.scene-social{--scene-mask:radial-gradient(ellipse 74% 66% at 50% 47%,#000 72%,transparent 100%);
+  --scene-fade:linear-gradient(to bottom,#000 88%,transparent 93%);
+  --crop-px:12px;--frame-ratio:640/595;--art-h:107.5%}
+/* Card pequeno: ~25% maior, centrado no smartphone e nos ícones das redes. */
+.sc-cards .scene-social{--crop-px:33px;--art-shift:-12px;--scene-fade:linear-gradient(to bottom,#000 81%,transparent 87%)}
+@media (max-width:599px){.sc-stage .svc-fallback-item .market-scene.scene-social{height:112px!important}}

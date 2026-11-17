@@ -139,7 +139,7 @@ function manifesto() {
   gsap.fromTo('.manifesto-light', { clipPath: 'circle(0% at 50% 55%)' }, { clipPath: 'circle(24% at 50% 55%)', ease: EASE.scroll, scrollTrigger: { trigger: root, start: 'top bottom', end: 'top top', scrub: SCRUB.tight } });
   const tl = gsap.timeline({
     defaults: { ease: EASE.scroll },
-    scrollTrigger: { trigger: root, start: 'top top', end: '+=140%', scrub: SCRUB.base, pin: '.manifesto-inner', anticipatePin: 1, invalidateOnRefresh: true },
+    scrollTrigger: { trigger: root, start: 'top top', end: '+=100%', scrub: SCRUB.base, pin: '.manifesto-inner', anticipatePin: 1, invalidateOnRefresh: true },
   });
   tl.fromTo('.manifesto-light', { clipPath: 'circle(24% at 50% 55%)' }, { clipPath: 'circle(90% at 50% 55%)', duration: 3 }, 0)
     .fromTo('.manifesto-lines ellipse, .manifesto-lines path', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 3.5, stagger: 0.5 }, 0.2)
@@ -313,23 +313,25 @@ function sales(desktop) {
   Object.assign(bus.product, { spin: 0, path: 0, travel: 0, rings: 0 });
   const rest = [q('.sales-text', root), ...qa('.sales-channels li', root)];
   if (desktop) {
-    const tl = gsap.timeline({ defaults: { ease: EASE.scroll }, scrollTrigger: { trigger: root, start: 'top top', end: '+=110%', scrub: SCRUB.base, pin: '.sales-inner', anticipatePin: 1, invalidateOnRefresh: true } });
-    tl.from('.sales .eyebrow', { opacity: 0, x: -20, duration: 0.5 }, 0)
-      .from(wa, { yPercent: 130, duration: 1, stagger: 0.18 }, 0.2)
-      .to(bus.product, { spin: 1, duration: 1.6, ease: 'power2.in' }, 1.4)
-      .fromTo('.sales-graphics .sg-ring, .sales-graphics .sg-arc', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.4, stagger: 0.15 }, 2)
-      .from('.sales-graphics .sg-nodes circle', { scale: 0, transformOrigin: '50% 50%', duration: 0.4, stagger: 0.1 }, 2.5)
-      .to(bus.product, { rings: 1, duration: 1 }, 2.1)
-      .to(bus.product, { travel: 1, duration: 0.6 }, 2.7)
-      .to(bus.product, { path: 1, duration: 2.4, ease: 'power1.inOut' }, 2.7)
-      .fromTo('.sales-graphics .sg-trail', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 2 }, 2.8)
-      .to(q('.st-a', root), { opacity: 0.75, duration: 0.6 }, 3.6)
-      .from(wb, { yPercent: 130, duration: 1, stagger: 0.18 }, 3.7)
-      .fromTo(spinWord, { rotationX: -100 }, { rotationX: 0, transformOrigin: '50% 50% -30px', duration: 1.1 }, 4.2)
-      .to(bus.product, { travel: 0.15, duration: 0.8 }, 5.1)
-      .from(rest, { opacity: 0, y: 24, duration: 0.6, stagger: 0.08 }, 4.8)
-      .from('.sales-cta', { opacity: 0, y: 30, scale: 0.92, duration: 0.7 }, 5.3)
-      .to({}, { duration: 0.2 }, 6.1);
+    // 7.0: the first line reads as the section enters; the pin only carries the product story.
+    gsap.timeline({ defaults: { ease: EASE.out }, scrollTrigger: { trigger: root, start: 'top 75%', toggleActions: 'play none none reverse' } })
+      .from('.sales .eyebrow', { opacity: 0, x: -20, duration: 0.5 }, 0)
+      .from(wa, { yPercent: 130, duration: 0.9, stagger: 0.12 }, 0.1);
+    const tl = gsap.timeline({ defaults: { ease: EASE.scroll }, scrollTrigger: { trigger: root, start: 'top top', end: '+=70%', scrub: SCRUB.base, pin: '.sales-inner', anticipatePin: 1, invalidateOnRefresh: true } });
+    tl.to(bus.product, { spin: 1, duration: 1.6, ease: 'power2.in' }, 0.2)
+      .fromTo('.sales-graphics .sg-ring, .sales-graphics .sg-arc', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.4, stagger: 0.15 }, 0.8)
+      .from('.sales-graphics .sg-nodes circle', { scale: 0, transformOrigin: '50% 50%', duration: 0.4, stagger: 0.1 }, 1.3)
+      .to(bus.product, { rings: 1, duration: 1 }, 0.9)
+      .to(bus.product, { travel: 1, duration: 0.6 }, 1.5)
+      .to(bus.product, { path: 1, duration: 2.4, ease: 'power1.inOut' }, 1.5)
+      .fromTo('.sales-graphics .sg-trail', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 2 }, 1.6)
+      .to(q('.st-a', root), { opacity: 0.4, duration: 0.6 }, 2.4)
+      .from(wb, { yPercent: 130, duration: 1, stagger: 0.18 }, 2.5)
+      .fromTo(spinWord, { rotationX: -100 }, { rotationX: 0, transformOrigin: '50% 50% -30px', duration: 1.1 }, 3)
+      .to(bus.product, { travel: 0.15, duration: 0.8 }, 3.9)
+      .from(rest, { opacity: 0, y: 24, duration: 0.6, stagger: 0.08 }, 3.6)
+      .from('.sales-cta', { opacity: 0, y: 30, scale: 0.92, duration: 0.7 }, 4.1)
+      .to({}, { duration: 0.2 }, 4.9);
     return () => root.classList.remove('is-live');
   }
   // Mobile: same order, played once on enter (no pin, no WebGL; CSS product spins).

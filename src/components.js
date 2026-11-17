@@ -1,0 +1,215 @@
+import { GX_SHAPES, GX_ASPECT } from './brand/gx-mark.js';
+// Decorative geometry uses a shared visual language; no content depends on it.
+const paths = {
+  globe: '<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6h14M5 18h14"/>',
+  bag: '<path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/>',
+  panels: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 8h18M9 8v13M13 12h5M13 16h3"/>',
+  megaphone: '<path d="m3 9 17-6v16L3 14V9ZM8 16l1 5h4l-2-4M21 9h2M21 14h2"/>',
+  chart: '<path d="M3 3v18h18M7 17v-4M12 17v-7M17 17V7M6 9l6-4 4 1 5-4"/>',
+  share: '<circle cx="5" cy="12" r="3"/><circle cx="18" cy="5" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8 10 7-4M8 14l7 4"/>',
+  palette: '<path d="M12 3a9 9 0 1 0 0 18h1a2 2 0 0 0 1-4 2 2 0 0 1 1-4h3a3 3 0 0 0 3-3c0-4-4-7-9-7Z"/><circle cx="7" cy="10" r=".7"/><circle cx="10" cy="6" r=".7"/><circle cx="15" cy="7" r=".7"/>',
+  pin: '<path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2"/>',
+  store: '<path d="M4 9h16l-1.5-5h-13L4 9Z"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/>',
+  live: '<rect x="7" y="2" width="10" height="20" rx="2"/><circle cx="12" cy="11" r="2.4"/><path d="M4 7.5a8 8 0 0 0 0 7M20 7.5a8 8 0 0 1 0 7M11 18h2"/>',
+  camera: '<rect x="2" y="7" width="14" height="11" rx="2"/><path d="m16 11 6-3v9l-6-3"/><circle cx="7" cy="12.5" r="2.5"/><path d="M5 7V5h6v2"/>',
+};
+export function techIcon(name) {
+  // pathLength=1 on every shape lets CSS "draw" any icon with one dash rule.
+  const shapes = (paths[name] || paths.globe).replace(/<(path|circle|ellipse|rect)\b/g, '<$1 pathLength="1"');
+  return `<svg class="tech-icon icon-${name}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shapes}</svg>`;
+}
+export function dataSphere() {
+  return `<div class="data-sphere" aria-hidden="true">${[0,30,60,90,120,150].map(a=>`<i style="--angle:${a}deg"></i>`).join('')}<b></b><span></span></div>`;
+}
+export function techCube() {
+  return '<div class="cube-stage" aria-hidden="true"><div class="tech-cube"><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="cube-orbit"></span></div>';
+}
+export function connectionGrid() {
+  return `<svg class="connection-grid" viewBox="0 0 800 180" fill="none" aria-hidden="true"><path pathLength="1" d="M0 90h120l80-60h150l100 120h150l80-60h120M120 90l80 60h150L450 30h150l80 60M200 30v120M350 30v120M450 30v120M600 30v120"/>${[[120,90],[200,30],[200,150],[350,30],[350,150],[450,30],[450,150],[600,30],[600,150],[680,90]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4"/>`).join('')}</svg>`;
+}
+export function serviceVisual(kind) {
+  const visuals = {
+    website: '<div class="mini-browser"><div class="mini-chrome"><i></i><i></i><i></i></div><div class="mini-site"><span>SEU PRÓXIMO<br>GRANDE PASSO.</span><i></i><b>VAMOS CRIAR ↗</b></div></div><div class="floating-label">&lt; / &gt;</div>',
+    commerce: "<div class=\"commerce-store\"><div class=\"commerce-browser\"><i></i><span>sualoja.com.br</span></div><strong>SUA LOJA ONLINE</strong><div class=\"commerce-product\"><svg viewBox=\"0 0 100 100\" fill=\"none\" aria-hidden=\"true\"><path d=\"M20 60V44a30 30 0 0 1 60 0v16\" stroke=\"#7809ac\" stroke-width=\"10\"/><rect x=\"12\" y=\"47\" width=\"20\" height=\"38\" rx=\"8\" fill=\"#7809ac\"/><rect x=\"68\" y=\"47\" width=\"20\" height=\"38\" rx=\"8\" fill=\"#7809ac\"/></svg><div><b>Fone sem fio</b><span>R$ 199,90</span><em>ADICIONAR AO CARRINHO</em></div></div><div class=\"commerce-confirmed\">✓ COMPRA CONFIRMADA</div></div>",
+    landing: '<div class="landing-window"><i></i><span></span><span></span><b>VAMOS LÁ ↗</b></div><div class="landing-cursor">↖</div>',
+    marketing: `<div class="signal-rings"><i></i><i></i><i></i>${techIcon('megaphone')}</div>`,
+    traffic: '<div class="chart-object"><i></i><i></i><i></i><i></i><span>↗</span></div>',
+    social: `<div class="social-object"><i>${techIcon('share')}</i><i>✳</i><i>↗</i><span></span></div>`,
+    marketplace: "<div class=\"market-premium\" role=\"img\" aria-label=\"Shopee, Mercado Livre e TikTok Shop\"><span class=\"market-brand mercado-livre\"><img src=\"/assets/marketplaces/mercado-livre.webp\" alt=\"Mercado Livre\" width=\"512\" height=\"512\" loading=\"lazy\"><b>Mercado Livre</b></span><span class=\"market-brand shopee\"><img src=\"/assets/marketplaces/shopee.webp\" alt=\"Shopee\" width=\"512\" height=\"512\" loading=\"lazy\"><b>Shopee</b></span><span class=\"market-brand tiktok-shop\"><img src=\"/assets/marketplaces/tiktok-shop.webp\" alt=\"TikTok Shop\" width=\"512\" height=\"512\" loading=\"lazy\"><b>TikTok Shop</b></span></div>",
+    live: "<div class=\"live-shopping live-photo-scene\"><div class=\"live-studio-light\"></div><div class=\"live-shopping-phone\"><img src=\"/assets/live/presenter.webp\" alt=\"\" loading=\"lazy\" width=\"640\" height=\"960\"><strong><i></i> AO VIVO</strong><b>COMPRAR NA LIVE</b></div><div class=\"live-product-bottle\"><i></i><span>GX</span></div></div>",
+    video: '<div class="video-object"><div class="video-body"><i></i></div><span class="video-lens"></span><span class="video-frame">▶</span></div>',
+    design: '<div class="design-object"><i></i><i></i><i></i><span>Aa</span><b>FORMA + FUNÇÃO</b></div>',
+  };
+  return `<div class="service-visual visual-${kind}" aria-hidden="true"><div class="visual-plane">${visuals[kind]}</div></div>`;
+}
+export function serviceCard([title,description,tag,icon,kind],index) {
+  return `<article class="service-card card-${kind}"><a href="#contato" data-service="${title}" aria-label="Conversar sobre ${title}"><div class="service-top"><span class="icon-box">${techIcon(icon)}</span><span class="service-index">0${index+1} / ${tag}</span></div>${serviceVisual(kind)}<div class="service-copy"><h3>${title}</h3><p>${description}</p></div><span class="service-action">VAMOS CONVERSAR <span aria-hidden="true">↗</span></span></a></article>`;
+}
+
+
+// ── Motion graphics (Motion Design Experience 3.0). All decorative: aria-hidden. ──
+
+// Concentric rings, orbital arcs and HUD ticks framing the hero sculpture.
+export function heroRings() {
+  const ticks = Array.from({ length: 48 }, (_, i) => {
+    const a = (i / 48) * Math.PI * 2, r1 = 300, r2 = i % 4 ? 306 : 316;
+    return `M${(460 + Math.cos(a) * r1).toFixed(1)} ${(330 + Math.sin(a) * r1).toFixed(1)}L${(460 + Math.cos(a) * r2).toFixed(1)} ${(330 + Math.sin(a) * r2).toFixed(1)}`;
+  }).join('');
+  return `<svg class="hero-rings" viewBox="0 0 920 660" fill="none" aria-hidden="true">
+<circle class="hr-ring" pathLength="1" cx="460" cy="330" r="150"/>
+<circle class="hr-ring hr-dash" pathLength="1" cx="460" cy="330" r="225"/>
+<circle class="hr-ring" pathLength="1" cx="460" cy="330" r="300"/>
+<path class="hr-ticks" d="${ticks}"/>
+<path class="hr-arc" pathLength="1" d="M160 330a300 300 0 0 1 300-300"/>
+<path class="hr-arc hr-arc-b" pathLength="1" d="M760 330a300 300 0 0 1-300 300"/>
+<g class="hr-nodes"><circle cx="460" cy="30" r="5"/><circle cx="160" cy="330" r="4"/><circle cx="672" cy="542" r="4"/></g>
+</svg>`;
+}
+
+// Circuit lines that connect the headline to the object; drawn during the intro.
+export function heroLines() {
+  return `<svg class="hero-lines" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+<path pathLength="1" d="M0 742h300l40-40h330l60-60h160"/>
+<path pathLength="1" d="M1440 150h-210l-50 50h-120"/>
+<path pathLength="1" d="M1440 820h-170l-60-60h-160l-40-40"/>
+<g class="hl-nodes"><circle cx="300" cy="742" r="3.5"/><circle cx="670" cy="702" r="3.5"/><circle cx="890" cy="642" r="5"/><circle cx="1050" cy="200" r="3.5"/><circle cx="1010" cy="720" r="3.5"/></g>
+</svg>`;
+}
+
+// Fixed chapter rail: scroll progress + active chapter (decorative; the nav carries semantics).
+export function scrollRail(chapters) {
+  return `<div class="scroll-rail" aria-hidden="true"><span class="rail-fill"></span>${chapters.map(([sel, label], i) => `<span class="rail-tick" data-target="${sel}"><b>0${i}</b><em>${label}</em></span>`).join('')}</div>`;
+}
+
+// Orbital SVG arcs drawn while the manifesto is pinned.
+export function manifestoLines() {
+  return `<svg class="manifesto-lines" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+<ellipse pathLength="1" cx="720" cy="450" rx="640" ry="250"/>
+<ellipse pathLength="1" cx="720" cy="450" rx="470" ry="390" transform="rotate(-24 720 450)"/>
+<path pathLength="1" d="M0 640C380 520 560 760 900 560s420-200 540-120"/>
+<path pathLength="1" d="M0 260c300 120 600-80 860 40s400 60 580-40"/>
+</svg>`;
+}
+
+// Grid of cells that dissolves to reveal the next (dark) section.
+export function gridDissolve(cols = 16, rows = 3) {
+  return `<div class="grid-dissolve" aria-hidden="true" style="--cols:${cols}">${'<i></i>'.repeat(cols * rows)}</div>`;
+}
+
+
+// ── Brand (Refinamento 4.0) ──────────────────────────────────────────────────
+
+// SVG path of the official GX symbol, from the same traced contours as the 3D mark.
+export const gxPath = (scale = 100) => GX_SHAPES.map((sh) => [sh.outer, ...sh.holes]
+  .map((poly) => 'M' + poly.map(([x, y]) => `${(x * scale).toFixed(2)} ${(-y * scale).toFixed(2)}`).join('L') + 'Z').join('')).join('');
+
+// Hidden sprite: the symbol path is emitted once per page and reused via <use>.
+export function gxDefs() {
+  return `<svg class="gx-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+<path id="gx-path" d="${gxPath(100).replace(/(\d)\.(\d)\d/g, '$1.$2')}" fill-rule="evenodd"/>
+<linearGradient id="gx-chrome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b3740"/><stop offset=".42" stop-color="#0d0c11"/><stop offset=".7" stop-color="#1a1220"/><stop offset="1" stop-color="#7809ac"/></linearGradient></defs></svg>`;
+}
+
+// Layered GX used as fallback when WebGL is off (mobile, reduced motion, lite).
+// Depth comes from stacked copies, never from altering the symbol's geometry.
+export function gxMarkSvg(cls = '') {
+  const w = GX_ASPECT * 100;
+  return `<svg class="gx-mark ${cls}" viewBox="${(-w / 2 - 6).toFixed(1)} -56 ${(w + 12).toFixed(1)} 112" aria-hidden="true" focusable="false"><use class="gx-depth" href="#gx-path" transform="translate(4 5)"/><use class="gx-depth gx-depth-2" href="#gx-path" transform="translate(2 2.5)"/><use class="gx-face" href="#gx-path" fill="url(#gx-chrome)"/><use class="gx-edge" href="#gx-path"/></svg>`;
+}
+
+// Procedural foliage (no photos): fronds = curved stem + paired leaflets.
+// Deterministic so the prerendered HTML is stable.
+function frond({ x, y, len, angle, bend = 0.25, leaflets = 14, width = 70, droop = 1 }) {
+  const a = (angle * Math.PI) / 180;
+  const ex = x + Math.cos(a) * len, ey = y + Math.sin(a) * len;
+  const cxp = (x + ex) / 2 - Math.sin(a) * len * bend, cyp = (y + ey) / 2 + Math.cos(a) * len * bend;
+  const P = (t) => [(1 - t) ** 2 * x + 2 * (1 - t) * t * cxp + t * t * ex, (1 - t) ** 2 * y + 2 * (1 - t) * t * cyp + t * t * ey];
+  const T = (t) => { const dx = 2 * (1 - t) * (cxp - x) + 2 * t * (ex - cxp), dy = 2 * (1 - t) * (cyp - y) + 2 * t * (ey - cyp); const m = Math.hypot(dx, dy); return [dx / m, dy / m]; };
+  let d = '';
+  for (let i = 1; i <= leaflets; i++) {
+    const t = i / (leaflets + 1);
+    const [px, py] = P(t), [tx, ty] = T(t);
+    const L = width * Math.pow(Math.sin(Math.PI * t), 0.75) * (1.05 - t * 0.35);
+    [-1, 1].forEach((side) => {
+      const sweep = ((55 - 25 * t) * Math.PI) / 180 * side;
+      const dx = tx * Math.cos(sweep) - ty * Math.sin(sweep), dy = tx * Math.sin(sweep) + ty * Math.cos(sweep) + 0.25 * droop * t;
+      const m = Math.hypot(dx, dy), ux = dx / m, uy = dy / m;
+      const tipx = px + ux * L, tipy = py + uy * L, nx = -uy * L * 0.17, ny = ux * L * 0.17;
+      const mx = px + ux * L * 0.5, my = py + uy * L * 0.5;
+      d += `M${px.toFixed(1)} ${py.toFixed(1)}Q${(mx + nx).toFixed(1)} ${(my + ny).toFixed(1)} ${tipx.toFixed(1)} ${tipy.toFixed(1)}Q${(mx - nx).toFixed(1)} ${(my - ny).toFixed(1)} ${px.toFixed(1)} ${py.toFixed(1)}Z`;
+    });
+  }
+  const stem = `M${x.toFixed(1)} ${y.toFixed(1)}Q${cxp.toFixed(1)} ${cyp.toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}`;
+  return { d, stem };
+}
+// Broad leaf with midrib (calathea-like silhouette).
+function broadLeaf({ x, y, len, angle, w = 0.36 }) {
+  const a = (angle * Math.PI) / 180, c = Math.cos(a), s = Math.sin(a);
+  const pt = (u, v) => [(x + c * u - s * v).toFixed(1), (y + s * u + c * v).toFixed(1)];
+  const W = len * w;
+  const [tx, ty] = pt(len, 0), [l1x, l1y] = pt(len * 0.25, -W), [l2x, l2y] = pt(len * 0.8, -W * 0.7), [r1x, r1y] = pt(len * 0.25, W), [r2x, r2y] = pt(len * 0.8, W * 0.7);
+  return { d: `M${x.toFixed(1)} ${y.toFixed(1)}C${l1x} ${l1y} ${l2x} ${l2y} ${tx} ${ty}C${r2x} ${r2y} ${r1x} ${r1y} ${x.toFixed(1)} ${y.toFixed(1)}Z`, stem: `M${x.toFixed(1)} ${y.toFixed(1)}L${tx} ${ty}` };
+}
+const layer = (cls, items) => `<g class="${cls}">${items.map(({ d, stem }, i) => `<g class="leaf leaf-${i}"><path class="leaf-blade" d="${d}"/><path class="leaf-rib" d="${stem}"/></g>`).join('')}</g>`;
+
+export function natureFoliage() {
+  const back = [
+    frond({ x: -40, y: 120, len: 620, angle: 12, bend: -0.18, leaflets: 18, width: 95 }),
+    frond({ x: 1500, y: 60, len: 560, angle: 160, bend: 0.2, leaflets: 16, width: 90 }),
+    frond({ x: 1480, y: 760, len: 520, angle: 200, bend: -0.15, leaflets: 15, width: 80 }),
+  ];
+  const mid = [
+    frond({ x: -60, y: 860, len: 560, angle: -38, bend: 0.22, leaflets: 15, width: 85 }),
+    frond({ x: 1500, y: 420, len: 470, angle: 188, bend: 0.25, leaflets: 13, width: 75 }),
+    frond({ x: 520, y: -60, len: 330, angle: 105, bend: -0.3, leaflets: 10, width: 55 }),
+  ];
+  const front = [
+    broadLeaf({ x: -80, y: 980, len: 420, angle: -52, w: 0.4 }),
+    broadLeaf({ x: 40, y: 1000, len: 320, angle: -78, w: 0.36 }),
+    broadLeaf({ x: 1520, y: 980, len: 380, angle: -130, w: 0.38 }),
+    broadLeaf({ x: 1540, y: 220, len: 300, angle: 168, w: 0.34 }),
+  ];
+  return `<svg class="nature-foliage" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<defs><linearGradient id="leafLit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c6a4c"/><stop offset="1" stop-color="#0b2419"/></linearGradient>
+<linearGradient id="leafDark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d2c20"/><stop offset="1" stop-color="#020a07"/></linearGradient></defs>
+${layer('fl-back', back)}${layer('fl-mid', mid)}${layer('fl-front', front)}
+<g class="fl-purple"><ellipse cx="980" cy="450" rx="330" ry="120" transform="rotate(-14 980 450)" pathLength="1"/><circle cx="660" cy="520" r="4"/><circle cx="1300" cy="372" r="3"/></g>
+</svg>`;
+}
+
+// Ex. 02 — "TECNOLOGIA. CRIATIVIDADE. RESULTADOS." scroll-driven word highlight.
+export function kineticStatement(words) {
+  return `<section class="statement" aria-label="${words.join(' ')}"><div class="statement-sticky"><p class="eyebrow"><span class="dot"></span> O QUE NOS GUIA</p><h2 class="statement-words">${words.map((w, i) => `<span class="sw sw-${i}"><span class="sw-i">${w}</span></span>`).join(' ')}</h2><div class="statement-meter" aria-hidden="true">${words.map((_, i) => `<i class="${i ? '' : 'is-active'}"></i>`).join('')}</div></div></section>`;
+}
+
+
+// ── Refinamento 5.0 — posicionamento comercial ───────────────────────────────
+
+// Services showcase (6.0): large 3D stage on the left (sticky, ~42%) + rich cards on the
+// right (~58%). Selecting a card (button in its heading) swaps the 3D object; the CTA
+// is a separate link. No scroll-driven selection: the page scrolls naturally.
+export function servicesShowcase(services) {
+  const n = String(services.length).padStart(2, '0');
+  const cards = services.map(([title, description, tag, icon, kind], i) => `<article class="service-card sc-card card-${kind}${i ? '' : ' is-active'}" data-index="${i}"><div class="service-top"><span class="icon-box">${techIcon(icon)}</span><span class="service-index">${String(i + 1).padStart(2, '0')} / ${tag}</span></div>${serviceVisual(kind)}<div class="service-copy"><h3><button class="sc-select" type="button" aria-pressed="${i === 0}">${title}</button></h3><p>${description}</p></div><a class="service-action" href="#contato" data-service="${title}" aria-label="Solicitar orçamento de ${title}">Solicitar orçamento <span aria-hidden="true">↗</span></a></article>`).join('');
+  const visuals = services.map(([, , , , kind], i) => `<div class="svc-fallback-item${i ? '' : ' is-active'}">${serviceVisual(kind)}</div>`).join('');
+  const titles = services.map(([title], i) => `<strong class="${i ? '' : 'is-active'}">${title}</strong>`).join('');
+  const tags = services.map(([, , tag], i) => `<i class="${i ? '' : 'is-active'}">${tag}</i>`).join('');
+  return `<div class="showcase">
+<aside class="sc-stage" aria-hidden="true"><div class="sc-visual"><div class="stage-grid"></div><div class="stage-glow"></div><div class="svc-fallback">${visuals}</div><div id="services-scene" class="stage-canvas"></div><svg class="stage-orbits" viewBox="0 0 400 400" fill="none"><circle pathLength="1" cx="200" cy="200" r="120"/><circle pathLength="1" cx="200" cy="200" r="160"/><circle class="so-progress" pathLength="1" cx="200" cy="200" r="190"/></svg><span class="stage-corner tl"></span><span class="stage-corner tr"></span><span class="stage-corner bl"></span><span class="stage-corner br"></span>
+<div class="sc-meta"><span class="sc-counter"><b>01</b> / ${n}</span><span class="sc-tags">${tags}</span></div><div class="sc-titles">${titles}</div><p class="sc-hint">Clique em um serviço para ver em 3D</p></div></aside>
+<div class="sc-cards">${cards}</div></div>`;
+}
+
+// "SEU PRODUTO ESTÁ PARADO? / A GENTE FAZ ELE GIRAR." — commercial call after the hero.
+export function salesSection(salesUrl) {
+  const channels = ['Vendemos seus produtos em marketplaces como Shopee e Mercado Livre', 'Criamos sua loja virtual', 'Fazemos lives de vendas e vídeos dos produtos', 'Anunciamos para atrair mais clientes'];
+  return `<section class="sales" id="vender" aria-labelledby="sales-title"><div class="sales-inner">
+<div class="sales-art" aria-hidden="true"><svg class="sales-graphics" viewBox="0 0 600 600" fill="none"><circle class="sg-ring" pathLength="1" cx="300" cy="300" r="170"/><circle class="sg-ring sg-ring-b" pathLength="1" cx="300" cy="300" r="230"/><path class="sg-arc" pathLength="1" d="M70 300a230 230 0 0 1 230-230"/><path class="sg-arc sg-arc-b" pathLength="1" d="M530 300a230 230 0 0 1-230 230"/><path class="sg-trail" pathLength="1" d="M40 470C170 520 260 380 330 300S520 150 580 190"/><g class="sg-nodes"><circle cx="300" cy="70" r="5"/><circle cx="530" cy="300" r="4"/><circle cx="70" cy="300" r="4"/></g></svg>
+<div class="sales-fallback"><div class="product-box"><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div id="sales-scene"></div></div>
+<div class="sales-copy"><p class="eyebrow"><span class="dot"></span> VENDAS ONLINE</p>
+<h2 class="sales-title" id="sales-title"><span class="st st-a"><span class="st-l">SEU PRODUTO</span> <span class="st-l">ESTÁ PARADO?</span></span> <span class="st st-b"><span class="st-l">A GENTE FAZ</span> <span class="st-l">ELE <em class="st-spin">GIRAR.</em></span></span></h2>
+<p class="sales-text">Da estratégia à venda: marketplaces, lojas virtuais, conteúdo, lives e tecnologia para levar seus produtos até novos clientes.</p>
+<p class="sales-how">Como a GX ajuda você a vender:</p><ul class="sales-channels" aria-label="Como a GX ajuda você a vender">${channels.map((c) => `<li>${c}</li>`).join('')}</ul>
+<a class="button sales-cta" href="${salesUrl}" target="_blank" rel="noopener noreferrer">Quero vender mais <span aria-hidden="true">↗</span></a> <a class="text-link sales-more" href="#expertise">Conhecer os serviços <span aria-hidden="true">↓</span></a><p class="brand-note">Shopee e Mercado Livre são marcas de seus respectivos titulares. A citação indica canais em que trabalhamos, não parceria oficial.</p></div>
+</div></section>`;
+}

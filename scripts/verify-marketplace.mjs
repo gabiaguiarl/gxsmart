@@ -1,0 +1,9 @@
+import fs from 'node:fs';
+const root='G:/Meu Drive/site-reformulando-gx/GX Smart',tabs=await(await fetch('http://127.0.0.1:9223/json/list')).json(),ws=new WebSocket(tabs[0].webSocketDebuggerUrl);await new Promise(r=>ws.onopen=r);let n=0;const q=new Map();ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.id){q.get(m.id)(m.result);q.delete(m.id);}};const send=(method,params={})=>new Promise(r=>{q.set(++n,r);ws.send(JSON.stringify({id:n,method,params}));});await send('Page.enable');await send('Runtime.enable');
+for(const [name,width,height,mobile]of [['desktop',1365,900,false],['mobile',390,844,true]]){
+ await send('Emulation.setDeviceMetricsOverride',{width,height,mobile,deviceScaleFactor:1});await send('Page.reload',{ignoreCache:true});await new Promise(r=>setTimeout(r,1800));
+ await send('Runtime.evaluate',{expression:"document.querySelector('.showcase').scrollIntoView()"});await new Promise(r=>setTimeout(r,1200));
+ await send('Runtime.evaluate',{expression:"document.querySelector('.sc-card').click()"});await new Promise(r=>setTimeout(r,1800));
+ fs.writeFileSync(root+'/docs/screenshots/marketplace-premium-'+name+'.png',Buffer.from((await send('Page.captureScreenshot',{format:'png'})).data,'base64'));
+ console.log(name,await send('Runtime.evaluate',{expression:"JSON.stringify({overflow:document.documentElement.scrollWidth>innerWidth,images:[...document.querySelectorAll('.market-premium img')].map(i=>i.complete&&i.naturalWidth>0),active:document.querySelector('.sc-titles .is-active')?.textContent})",returnByValue:true}));
+}ws.close();

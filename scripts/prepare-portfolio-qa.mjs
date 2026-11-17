@@ -1,0 +1,4 @@
+import fs from 'node:fs';const root='G:/Meu Drive/site-reformulando-gx/GX Smart';let qa=fs.readFileSync(root+'/scripts/verify-live.mjs','utf8').replaceAll(".showcase","#projetos").replaceAll("document.querySelectorAll('.sc-card')[2].click()","window.scrollBy(0,-85)").replaceAll('live-premium-','portfolio-refined-');
+qa=qa.replace("ws.close();",`console.log('Filter',await send('Runtime.evaluate',{expression:"document.querySelector('[data-filter=Institucional]').click();",returnByValue:true}));await new Promise(r=>setTimeout(r,1000));console.log(await send('Runtime.evaluate',{expression:"JSON.stringify({visibleProjects:[...document.querySelectorAll('.project')].filter(p=>getComputedStyle(p).display!=='none').length,overflow:document.documentElement.scrollWidth>innerWidth})",returnByValue:true}));await send('Runtime.evaluate',{expression:"document.querySelector('[data-filter=Todos]').click()"});ws.close();`);
+fs.writeFileSync(root+'/scripts/verify-portfolio.mjs',qa);
+

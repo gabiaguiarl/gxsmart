@@ -1,0 +1,23 @@
+import fs from 'node:fs';
+const root='G:/Meu Drive/site-reformulando-gx/GX Smart';
+const read=p=>fs.readFileSync(root+'/'+p,'utf8'),write=(p,s)=>fs.writeFileSync(root+'/'+p,s);
+const backup=p=>{if(!fs.existsSync(root+'/'+p+'.before-marketplace'))write(p+'.before-marketplace',read(p));};
+const file='dist/assets/services3d-C0txMUkZ.js';backup(file);
+let code=read(file);
+const start=code.indexOf('marketplace(){'),end=code.indexOf('commerce(){',start);
+if(start<0||end<start)throw Error('Marketplace boundary missing');
+code='import {createMarketplace} from "./marketplace-premium.js";\n'+code.slice(0,start)+'marketplace(){return createMarketplace({Group:m,Physical:H,Basic:J,mesh:c,rbox:y,plane:b,track:v,canvasTex:E,container:O,camera:P,isAlive:()=>j})},'+code.slice(end);
+code=code.replace('g.x*.18','(_===0?0:g.x*.18)').replace('.03+g.y*.1','(_===0?0:.03+g.y*.1)');
+write(file,code);
+backup('src/services3d.js');code=read('src/services3d.js');const a=code.indexOf('    marketplace() {'),b=code.indexOf('    commerce() {',a);
+code="import { createMarketplace } from './marketplace-premium.js';\n"+code.slice(0,a)+'    marketplace() { return createMarketplace({Group:THREE.Group,Physical:THREE.MeshPhysicalMaterial,Basic:THREE.MeshBasicMaterial,mesh,rbox,plane,track,canvasTex,container,camera,isAlive:()=>alive}); },\n'+code.slice(b);
+code=code.replace('p.x * 0.5',"(currentIndex === 0 ? 0 : p.x * 0.5)").replace('0.06 + p.y * 0.25',"(currentIndex === 0 ? 0 : 0.06 + p.y * 0.25)");
+write('src/services3d.js',code);
+const markup='<div class="market-premium" role="img" aria-label="Shopee, Mercado Livre e TikTok Shop">'+[['mercado-livre','Mercado Livre'],['shopee','Shopee'],['tiktok-shop','TikTok Shop']].map(([id,name])=>'<span class="market-brand '+id+'"><img src="/assets/marketplaces/'+id+'.webp" alt="'+name+'" width="512" height="512" loading="lazy"><b>'+name+'</b></span>').join('')+'</div>';
+backup('dist/index.html');let html=read('dist/index.html');html=html.replace(/<div class="market-shops">[\s\S]*?<\/div>/g,markup);html=html.replace('</head>','<link rel="stylesheet" href="/assets/marketplace-premium.css">\n</head>');write('dist/index.html',html);
+backup('src/components.js');code=read('src/components.js');const s=code.indexOf('    marketplace: MARKETPLACE_LOGOS.enabled'),e=code.indexOf('    live:',s);if(s<0||e<s)throw Error('fallback boundary missing');code=code.slice(0,s)+'    marketplace: '+JSON.stringify(markup)+',\n'+code.slice(e);code=code.replace("import { MARKETPLACE_LOGOS } from './data.js';\n",'');write('src/components.js',code);
+const css=`.visual-marketplace .visual-plane{transform:none!important}.market-premium{position:relative;width:290px;height:230px;margin:auto;isolation:isolate}.market-premium:before{content:"";position:absolute;inset:10%;background:radial-gradient(ellipse,#7809ac36,transparent 70%);z-index:-1}.market-brand{position:absolute;width:104px;left:calc(50% - 52px);top:0;filter:drop-shadow(0 6px 8px #0005)}.market-brand img{display:block;width:100%;height:auto;border-radius:19%;box-shadow:3px 5px 0 #16121c}.market-brand b{display:block;margin-top:8px;color:#fff;font:500 11px/1.2 Arial,sans-serif;text-align:center}.market-brand.shopee{left:24px;top:111px;transform:rotate(-6deg)}.market-brand.tiktok-shop{left:auto;right:24px;top:111px;transform:rotate(6deg)}.sc-stage:has(.svc-fallback-item.is-active .visual-marketplace){background-color:#050505}.sc-stage .market-premium{transform:scale(1.25);transform-origin:center}.sc-stage .visual-marketplace{padding-bottom:45px}@media(max-width:899px){.sc-stage .market-premium{width:270px;height:125px;transform:none}.sc-stage .market-brand{width:69px;left:100px;top:0}.sc-stage .market-brand.shopee{left:15px;top:23px}.sc-stage .market-brand.tiktok-shop{left:auto;right:15px;top:23px}.sc-stage .market-brand b{font-size:10px;margin-top:5px}.sc-stage .visual-marketplace{padding-bottom:24px}}@media(prefers-reduced-motion:reduce){.market-brand{animation:none!important;transition:none!important}}`;
+write('src/marketplace-premium.css',css);write('dist/assets/marketplace-premium.css',css);
+code=read('src/main.js');if(!code.includes("./marketplace-premium.css"))write('src/main.js',"import './marketplace-premium.css';\n"+code);
+console.log('Marketplace source and isolated compiled module updated; backups saved.');
+

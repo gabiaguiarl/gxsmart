@@ -33,6 +33,7 @@ export function connectionGrid() {
 // Marketplaces and Lives de Vendas compositions, in the service cards and in the stage.
 const SCENES = {
   marketplace: { cls: 'visual-marketplace market-scene', src: '/assets/marketplaces/marketplace-composition.webp', h: 676 },
+  commerce: { cls: 'visual-commerce market-scene scene-commerce', src: '/assets/commerce/commerce-composition.webp', h: 640 },
   live: { cls: 'visual-live market-scene scene-live', src: '/assets/live/live-composition.webp', h: 678 },
   marketing: { cls: 'visual-marketing market-scene scene-marketing', src: '/assets/marketing/marketing-composition.webp', h: 640 },
 };

@@ -297,8 +297,8 @@ export function mountServices(container, { fallback = null, kinds = ORDER } = {}
     key.position.x = damp(key.position.x, -3 + p.x * 6, 0.05);
     rim.intensity = 2.4;
     violet.position.set(Math.cos(time * 0.5) * 4.5, Math.sin(time * 0.35) * 2.2, 3);
-    // Marketplace (0), Lives (2) and Marketing (3) are shown as HTML compositions over a hidden canvas: no need to draw them.
-    if (currentIndex !== 0 && currentIndex !== 2 && currentIndex !== 3) renderer.render(scene, camera);
+    // Marketplace (0), E-commerce (1), Lives (2) and Marketing (3) are shown as HTML compositions over a hidden canvas: no need to draw them.
+    if (currentIndex > 3) renderer.render(scene, camera);
     fit(dt);
     if (!shown) { shown = true; if (fallbackNode) fallbackNode.style.opacity = '0'; container.classList.add('is-live'); }
     frame = requestAnimationFrame(render);

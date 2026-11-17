@@ -67,8 +67,8 @@
 .market-shadow{position:absolute;left:50%;bottom:4px;width:44%;height:14px;margin-left:-22%;border-radius:50%;
   background:radial-gradient(closest-side,#000a,transparent);transform:translateZ(-1px)}
 /* Logos sempre com as cores originais, mesmo com o card inativo. */
-.sc-cards :is(.card-marketplace,.card-live,.card-marketing) .service-visual{filter:none!important}
-.sc-cards .sc-card:is(.card-marketplace,.card-live,.card-marketing):not(.is-active):not(:hover):not(:focus-within) .service-visual{opacity:.85}
+.sc-cards :is(.card-marketplace,.card-commerce,.card-live,.card-marketing) .service-visual{filter:none!important}
+.sc-cards .sc-card:is(.card-marketplace,.card-commerce,.card-live,.card-marketing):not(.is-active):not(:hover):not(:focus-within) .service-visual{opacity:.85}
 @media (prefers-reduced-motion:no-preference){
   .market-float{animation:market-float 6.5s ease-in-out infinite}
   .market-shadow{animation:market-shadow 6.5s ease-in-out infinite}
@@ -117,3 +117,12 @@
 .sc-cards .scene-marketing{--crop-px:33px;--art-shift:-12px}
 /* Celular: composição larga um pouco menor, com folga para o subtítulo do palco. */
 @media (max-width:599px){.sc-stage .svc-fallback-item .market-scene.scene-marketing{height:112px!important}}
+
+/* E-commerce — mesmo componente. Composição larga (sacola e % perto das bordas): máscara aberta nas
+   laterais; a base se dissolve abaixo do selo "Compra confirmada" e do escudo. */
+.scene-commerce{--scene-mask:radial-gradient(ellipse 72% 64% at 50% 46%,#000 72%,transparent 100%);
+  --scene-fade:linear-gradient(to bottom,#000 82%,transparent 89%);
+  --crop-px:16px;--frame-ratio:640/576;--art-h:111%}
+/* Card pequeno: ~25% maior, centrado no notebook e no carrinho. */
+.sc-cards .scene-commerce{--crop-px:33px;--art-shift:-12px;--scene-fade:linear-gradient(to bottom,#000 81%,transparent 87%)}
+@media (max-width:599px){.sc-stage .svc-fallback-item .market-scene.scene-commerce{height:112px!important}}

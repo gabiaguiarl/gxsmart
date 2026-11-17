@@ -2,6 +2,20 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — E-commerce: nova composição visual
+
+**Resumo:** o serviço E-commerce (02 / Loja virtual) passou a usar a composição fornecida (notebook com a loja, fone, carrinho com sacola e caixa, ícones de sacola e %, selo "Compra confirmada" e escudo), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição e CTA preservados.
+
+**Melhorias**
+- Imagem otimizada: 1254×1254 (158 KB) → 640×640 WebP (52 KB), carregada sob demanda.
+- Card grande (desktop): composição com ~447×402px, centralizada acima de "E-commerce"; a base se dissolve abaixo do selo e do escudo. A cena WebGL antiga (incluindo o carrinho ajustado na Fase 3) fica oculta e não é desenhada com o serviço ativo.
+- Card pequeno: imagem ~25% maior, centrada no notebook e no carrinho.
+- Tablet: 150px centralizado no palco. Celular: 112px à direita, com folga para o título e o subtítulo.
+- Movimento: flutuação, inclinação, avanço no hover e transição ao selecionar, reaproveitados; parado com movimento reduzido.
+
+**Observações técnicas**
+- Com isso, os serviços 01 a 04 usam composições em HTML; a cena WebGL só é desenhada para os serviços 05 a 10.
+
 ## 17/11/2026 — Marketing Digital: nova composição visual
 
 **Resumo:** o serviço Marketing Digital (04 / Estratégia & campanhas) passou a usar a composição fornecida (notebook com gráficos, alvo e seta, megafone, cards flutuantes de métricas, anúncio e calendário), no card pequeno e no card grande. Mesmo componente de Marketplaces e Lives; nome, descrição e CTA preservados. Gestão de Tráfego (09) não foi alterado.

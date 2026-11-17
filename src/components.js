@@ -40,6 +40,7 @@ const SCENES = {
   video: { cls: 'visual-video market-scene scene-video', src: '/assets/video/video-composition.webp', h: 640 },
   traffic: { cls: 'visual-traffic market-scene scene-traffic', src: '/assets/traffic/traffic-composition.webp', h: 640 },
   landing: { cls: 'visual-landing market-scene scene-landing', src: '/assets/landing/landing-composition.webp', h: 640 },
+  design: { cls: 'visual-design market-scene scene-design', src: '/assets/design/design-composition.webp', h: 640 },
   marketing: { cls: 'visual-marketing market-scene scene-marketing', src: '/assets/marketing/marketing-composition.webp', h: 640 },
 };
 export function cardVisual(kind) {

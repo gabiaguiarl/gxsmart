@@ -2,6 +2,21 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — Design Digital: nova composição visual (10 de 10 serviços)
+
+**Resumo:** o serviço Design Digital (08 / Design & experiência) passou a usar a composição fornecida (notebook com interface de design e "Aa", paletas de cores, mesa digitalizadora com caneta, ferramenta vetorial, ícone de imagem, lâmpada, segundo "Aa" e caneca GX Smart), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição, numeração e CTA preservados. Com isso, os dez serviços usam as novas composições.
+
+**Melhorias**
+- Imagem otimizada: 1254×1254 (134 KB) → 640×640 WebP (47 KB), carregada sob demanda.
+- Card grande (desktop): composição com ~447×416px, centralizada acima de "Design Digital"; a mesa digitalizadora fica inteira e só o reflexo do piso se dissolve.
+- Card pequeno: imagem ~30% maior, centrada no notebook, na tipografia e nas paletas.
+- Tablet: 150px centralizado no palco. Celular: 112px à direita, sem sobrepor o título e o subtítulo.
+- Movimento: flutuação, inclinação, avanço no hover e transição ao selecionar, reaproveitados; parado com movimento reduzido.
+
+**Desempenho**
+- Como nenhum serviço usa mais a cena WebGL do palco, o módulo `services3d` deixou de ser carregado (flag `SERVICES_WEBGL = false` em `src/motion/index.js`). Isso elimina o segundo contexto WebGL e o laço de animação dessa cena. As cenas 3D do hero, do manifesto e do contato continuam iguais.
+- As regras de CSS compartilhadas passaram a usar `.sc-card:has(.market-scene)` no lugar da lista dos dez serviços, com o mesmo resultado.
+
 ## 17/11/2026 — Landing Pages: nova composição visual
 
 **Resumo:** o serviço Landing Pages (10 / Páginas de conversão) passou a usar a composição fornecida (página de conversão "Uma página. Um objetivo." com botão e cursor, foguete, alvo e seta, gráfico de crescimento, ícone de público e pedestal), no card pequeno e no card grande. Mesmo componente dos serviços anteriores; nome, descrição e CTA preservados.

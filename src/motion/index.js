@@ -369,7 +369,10 @@ function scenes() {
     ...(lite ? [] : [{ el: q('#cta-scene'), preset: 'cta', fallback: null }]),
   ];
   whenNear(['#scene', '.sales', '.manifesto', '.nature', '.contact'], ({ mountBrand }) => mountBrand(hosts));
-  if (!lite) {
+  // All ten services now use HTML compositions in the stage (components.js SCENES), so the services
+  // WebGL module is no longer loaded. Kept behind a flag in case a WebGL scene is needed again.
+  const SERVICES_WEBGL = false;
+  if (!lite && SERVICES_WEBGL) {
     const io = new IntersectionObserver((entries) => {
       if (!entries.some((e) => e.isIntersecting)) return;
       io.disconnect();

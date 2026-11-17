@@ -237,3 +237,29 @@
   .sc-stage .svc-fallback-item:has(.market-scene){padding-bottom:0}
   .sc-stage .market-scene .market-art{filter:none}
 }
+
+/* ═══ UX — Etapa 1: legibilidade ═══
+   Tamanho mínimo de texto: 11px no desktop/tablet e 12px no celular para rótulos, links, botões e
+   legendas (antes 7–10px). Textos decorativos de mockups e legendas de arte: mínimo 10px.
+   O contraste já atendia WCAG AA (≥ 5,6:1 em todos os textos pequenos); cores não mudam.
+   "body" no início só garante prioridade sobre as regras antigas dentro de media queries. */
+body :is(.hero-services a,.hero .eyebrow,.hero-foot a,.hero-foot span,.section-label span,.about-sphere span,
+  .service-extras span,.network-transition span,.portfolio-count,.footer-top p,.footer-columns span,.footer-bottom span,
+  .hero-actions .button,.hero-actions .text-link,.sc-cards .service-action,.service-index,.story-note,.project-caption span,
+  .virtual-links p,.contact-cta .button,.sales-copy .eyebrow,.sales-channels li,.statement .eyebrow,.services-heading .text-link,
+  .process .eyebrow,.contact .eyebrow,.contact form label,.contact form .text-link,.process ol li>span){font-size:11px}
+body .contact .form-note{font-size:12px}
+body :is(.art-caption,.project-image .browser-bar span,.process-object>span){font-size:10px}
+/* Rótulos em caixa alta ficam legíveis com um pouco menos de espaçamento quando crescem. */
+body :is(.service-index,.hero-services a,.footer-bottom span){letter-spacing:.06em}
+@media (max-width:599px){
+  body :is(.hero-services a,.hero .eyebrow,.hero-foot a,.hero-foot span,.section-label span,.about-sphere span,
+    .service-extras span,.network-transition span,.portfolio-count,.footer-top p,.footer-columns span,.footer-bottom span,
+    .hero-actions .button,.hero-actions .text-link,.sc-cards .service-action,.story-note,.project-caption span,
+    .virtual-links p,.contact-cta .button,.sales-copy .eyebrow,.sales-channels li,.statement .eyebrow,.services-heading .text-link,
+    .process .eyebrow,.contact .eyebrow,.contact form label,.contact form .text-link,.process ol li>span){font-size:12px}
+  body .hero-services a{letter-spacing:.04em}
+}
+/* Palco dos serviços: legenda e categoria (o palco é aria-hidden, mas o texto é lido visualmente). */
+body :is(.sc-hint,.sc-meta){font-size:11px}
+@media (max-width:599px){body :is(.sc-hint,.sc-meta){font-size:12px}}

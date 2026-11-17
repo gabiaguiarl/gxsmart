@@ -2,6 +2,20 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — UX Etapa 1: legibilidade
+
+**Resumo:** primeira etapa do plano de experiência universal. Textos pequenos (rótulos, links, botões e legendas) agora têm tamanho mínimo legível, sem mudar cores, layout ou animações.
+
+**Melhorias**
+- Desktop/tablet: mínimo de 11px (antes 8–10px) para rótulos de seção, atalhos do hero, "Iniciar um projeto", "Vamos conversar", categorias dos serviços, legendas dos projetos, rótulos do formulário, rodapé e legenda e categoria do card principal dos serviços.
+- Celular: mínimo de 12px para os mesmos textos (antes alguns tinham 7px, como os atalhos do hero).
+- Textos decorativos (barras de navegador dos mockups, legendas de arte): mínimo de 10px.
+- Etiquetas em caixa alta com espaçamento entre letras um pouco menor ao crescer.
+
+**Observações técnicas**
+- Contraste já atendia WCAG AA: todos os textos pequenos medidos tinham pelo menos 5,6:1.
+- Sem rolagem lateral em 390 e 1440px; a página do celular ficou 128px mais alta (atalhos do hero em três linhas).
+
 ## 17/11/2026 — Serviços: direção de arte harmonizada com a homepage
 
 **Resumo:** com as dez composições integradas, a seção de serviços parecia uma vitrine à parte (fundos roxos, dez ícones roxos preenchidos e brilhando, palco com grade, brilho e anel roxos fortes). O refinamento aproxima a seção da linguagem do restante do site: preto predominante, linhas finas e roxo só como acento. Estrutura, textos, imagens e interações preservados; apenas CSS.

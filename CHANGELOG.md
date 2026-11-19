@@ -2,6 +2,26 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 19/11/2026 — Portfólio como vitrine de marcas (logos oficiais coloridas)
+
+**Resumo:** "Cada marca. Um universo." deixa de ser uma coleção de logos brancas iguais e passa a valorizar a identidade de cada cliente, mantendo o preto e o roxo GX na interface.
+
+**Marcas**
+- Logos oficiais dos arquivos de marca dos clientes (Drive), em cores originais, sem filtros nem recoloração; apenas recorte de margens e otimização WebP (14–63 KB).
+- Samsara Essence: fundo marfim quente e traço preto oficial.
+- Fênix Services: azul-marinho oficial #182B50 (igual à placa da logo, sem emenda), vinheta nas bordas, filete laranja #FF6C00 no hover.
+- MDG Automação: azul oficial #000AAB (confirmado no site), grade técnica só nas bordas, filete amarelo #FFE500 no hover; placa recortada até o desenho.
+- Loja Fênix: superfície clara com a versão colorida da logo Fênix e calor laranja discreto.
+- Área Monitorada e VDM3D: mantêm o card tipográfico; aguardam logos oficiais.
+
+**Interação e informação**
+- Hover/foco: elevação de ~5px, luz suave por cima da composição, borda e filete da cor da marca, seta em botão roxo; foco por teclado com anel roxo; movimento reduzido sem deslocamentos.
+- Legenda: nome em destaque (19–22px), categoria em caixa alta, "Conhecer projeto ↗" sempre visível.
+- A luz roxa do cursor (mix-blend) some sobre os cards de marca para não tingir as cores oficiais.
+
+**Validação**
+- 1440, 768, 390 e 360px sem rolagem lateral; 4 logos carregando; 9/9 testes.
+
 ## 19/11/2026 — "Ideias conectadas" em rede neural animada e "O que nos guia" sem medidor
 
 **Resumo:** a animação de conexões foi refeita com muito mais presença, e a linha de três segmentos sob "Tecnologia. Criatividade. Resultados." foi removida.

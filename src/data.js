@@ -1,11 +1,11 @@
-// logo: official client mark (monochrome white, from the client's own site). No logo = typographic
+// logo: official client mark in its original colours (client's own brand files); theme: card background family. No logo = typographic
 // fallback flagged data-logo="pendente" (Área Monitorada uses the Fênix brand; vdm3d.com.br is offline).
 export const projects = [
-  { name: 'Samsara Essence', category: 'E-commerce', image: 'samsara.png', logo: { file: 'samsara.webp', w: 444, h: 494 }, url: 'https://samsaraessence.com.br/' },
-  { name: 'Fênix Services', category: 'Institucional', image: 'fenix.png', logo: { file: 'fenix.webp', w: 324, h: 170 }, url: 'https://fenixservices.com.br/' },
-  { name: 'MDG Automação', category: 'E-commerce', image: 'mdg.png', logo: { file: 'mdg.webp', w: 505, h: 560 }, url: 'https://mdgautomacao.com.br/' },
+  { name: 'Samsara Essence', category: 'E-commerce', image: 'samsara.png', logo: { file: 'samsara-oficial.webp', w: 571, h: 640 }, theme: 'samsara', url: 'https://samsaraessence.com.br/' },
+  { name: 'Fênix Services', category: 'Institucional', image: 'fenix.png', logo: { file: 'fenix-oficial.webp', w: 640, h: 354 }, theme: 'fenix', url: 'https://fenixservices.com.br/' },
+  { name: 'MDG Automação', category: 'E-commerce', image: 'mdg.png', logo: { file: 'mdg-oficial.webp', w: 584, h: 640 }, theme: 'mdg', url: 'https://mdgautomacao.com.br/' },
   { name: 'Área Monitorada', category: 'Institucional', image: 'area.png', url: 'https://areamonitorada.com.br/' },
-  { name: 'Loja Fênix', category: 'E-commerce', image: 'loja-fenix.png', logo: { file: 'fenix.webp', w: 324, h: 170 }, url: 'https://loja.fenixservices.com.br/' },
+  { name: 'Loja Fênix', category: 'E-commerce', image: 'loja-fenix.png', logo: { file: 'fenix-oficial-clara.webp', w: 576, h: 303 }, theme: 'loja', url: 'https://loja.fenixservices.com.br/' },
   { name: 'VDM3D', category: 'E-commerce', image: 'vdm.png', url: 'https://vdm3d.com.br/' },
 ];
 // Order = commercial priority (sales channels first). [title, description, tag, icon, kind]

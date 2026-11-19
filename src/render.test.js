@@ -20,18 +20,15 @@ test('every service is a rich card: icon, selectable title, description, illustr
   assert.ok(html.indexOf('class="sc-stage"') < html.indexOf('class="sc-cards"'), '3D stage on the left of the cards');
 });
 
-test('commercial call: headline, support text and CTA to the real WhatsApp', () => {
-  assert.ok(html.includes('SEU PRODUTO') && html.includes('ESTÁ PARADO?') && html.includes('A GENTE FAZ') && html.includes('GIRAR.'));
-  assert.ok(html.includes('Da estratégia à venda: marketplaces, lojas virtuais, conteúdo, lives e tecnologia para levar seus produtos até novos clientes.'));
-  const cta = html.match(/<a class="button sales-cta" href="([^"]+)"[^>]*>Quero vender mais/);
-  assert.ok(cta, 'CTA');
-  const url = new URL(cta[1].replace(/&amp;/g, '&'));
-  assert.equal(url.hostname, 'wa.me'); assert.equal(url.pathname, '/5511977085852');
-  assert.ok(html.indexOf('class="sales"') < html.indexOf('class="about section"'), 'right after the hero');
+test('hero: objective description, two CTAs and no removed blocks', () => {
+  assert.ok(html.includes('Transformamos produtos e marcas em oportunidades de venda com marketplaces, lojas virtuais, marketing e produção digital.'));
+  assert.match(html, /<a class="button" href="#contato">INICIAR UM PROJETO/);
+  assert.match(html, /<a class="text-link" href="#expertise">CONHECER SERVIÇOS/);
+  ['class="sales"', 'SEU PRODUTO', 'hero-services', 'hero-marquee', 'hero-foot', 'hero-hud'].forEach((t) => assert.ok(!html.includes(t), t));
 });
 
 test('decorative motion layers are hidden from assistive tech', () => {
-  ['hero-rings', 'hero-lines', 'manifesto-lines', 'grid-dissolve', 'scroll-rail', 'cursor-light', 'cta-stage', 'sc-stage', 'sales-art', 'line-wipe', 'hero-marquee', 'nature-bg', 'nature-gx', 'gx-fallback', 'statement-meter', 'connect-lines'].forEach((cls) => {
+  ['hero-rings', 'hero-lines', 'manifesto-lines', 'grid-dissolve', 'scroll-rail', 'cursor-light', 'cta-stage', 'sc-stage', 'line-wipe', 'nature-bg', 'nature-gx', 'gx-fallback', 'statement-meter', 'connect-lines'].forEach((cls) => {
     const re = new RegExp(`class="${cls}[^"]*"[^>]*aria-hidden="true"|aria-hidden="true"[^>]*class="${cls}`);
     assert.match(html, re, cls);
   });

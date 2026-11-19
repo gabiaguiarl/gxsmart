@@ -2,6 +2,27 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 18/11/2026 — Etapa A: hero simplificado, seção de vendas removida e "O que nos guia"
+
+**Resumo:** primeira etapa do refinamento final de UX e comunicação. A abertura passa a dizer o que a GX faz em uma frase e oferece só duas ações; a seção "Seu produto está parado?" sai; o rótulo de "O que nos guia" ganha presença. Título, GX 3D e animações tipográficas preservados.
+
+**Hero**
+- Nova descrição: "Transformamos produtos e marcas em oportunidades de venda com marketplaces, lojas virtuais, marketing e produção digital." (16–18px, antes 14px).
+- Dois CTAs: "Iniciar um projeto" (botão roxo, destaque, leva ao contato) e "Conhecer serviços" (link secundário, leva aos serviços; antes "Conheça nossos projetos").
+- Removidos: as três etiquetas de serviços, o painel "CENA 3D / PERCURSO 000%" (colado ao botão), o rodapé da abertura ("Design com intenção…", "Role para explorar", "São Paulo · Brasil") e o letreiro gigante "O FUTURO SE CONSTRÓI AQUI". A frase fica registrada para reuso futuro em um contexto com mais espaço.
+- Abertura mobile mais curta (mín. 760px ou a altura da tela) para não deixar vazio antes de "O estúdio".
+
+**Seção "Seu produto está parado?" removida**
+- Marcação, animação de rolagem (pin), cena 3D da caixa e entrada na trilha lateral removidas; a trilha foi renumerada (00–07). O hero passa direto para "O estúdio". Componentes compartilhados intactos.
+
+**"O que nos guia"**
+- Rótulo de 11px para 13px (celular) / até 17px (desktop), branco, com filete roxo e mais espaço até as palavras.
+- Palavras ainda não ativas mais claras (#86818D, contraste ≥4,5:1) para continuarem legíveis durante o movimento; palavra ativa e passadas mantêm o destaque.
+
+**Observações técnicas**
+- Testes de renderização atualizados para a nova abertura (9/9 passando); sem rolagem lateral em 1280, 768, 390 e 360px; sem avisos ou erros no console ao rolar a página.
+- A função de animação da seção de vendas permanece no bundle minificado, mas não é mais chamada.
+
 ## 17/11/2026 — UX Etapa 2: áreas de toque e navegação
 
 **Resumo:** todos os links e botões passam a ter área de toque de pelo menos 44×44px, e o cabeçalho mobile mostra em qual seção o visitante está.

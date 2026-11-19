@@ -288,3 +288,19 @@ body .footer-columns span{margin-bottom:6px}
 @media (max-width:359px){.header-current{display:none}}
 @media (prefers-reduced-motion:reduce){.header-current{transition:none;transform:none}}
 
+/* ═══ Etapa A — Hero simplificado + "O que nos guia" ═══
+   Hero: sem etiquetas, HUD, rodapé e letreiro "O FUTURO SE CONSTRÓI" (frase guardada para reuso futuro).
+   Descrição + 2 CTAs: "Iniciar um projeto" (primário) e "Conhecer serviços" (secundário). */
+body .hero-bottom{margin-top:clamp(28px,3.4vw,48px)}
+body .hero-bottom p{max-width:440px;font-size:clamp(16px,1.25vw,18px);line-height:1.55;color:#e6e2ea}
+body .hero-actions .button{min-height:56px}
+@media (max-width:899px){body .hero-bottom p{max-width:34ch}
+  /* sem etiquetas e rodapé, a abertura mobile encolhe para não deixar vazio antes de "O estúdio" */
+  body .hero{min-height:max(760px,100svh);padding-bottom:40px}}
+/* O que nos guia: rótulo de seção legível, com filete roxo, sem mexer na tipografia animada. */
+html body .statement .eyebrow{font-size:clamp(14px,1.2vw,17px);letter-spacing:.18em;color:#fff;gap:14px;margin:0 0 clamp(24px,3vw,44px)}
+html body .statement .eyebrow .dot{width:8px;height:8px}
+html body .statement .eyebrow:after{content:'';flex:0 0 clamp(48px,6vw,96px);height:1px;background:linear-gradient(90deg,#7809ac,#7809ac00)}
+/* Palavras ainda não ativas: legíveis (≥4,5:1) durante a rolagem; ativa/passada mantêm o destaque. */
+body .statement.is-live .sw{color:#86818d}
+@media (max-width:599px){html body .statement .eyebrow{font-size:13px}}

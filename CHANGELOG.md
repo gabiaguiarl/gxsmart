@@ -2,6 +2,24 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 19/11/2026 — Páginas de serviço: mais motion (todas) e piloto experiencial de Gestão de Tráfego
+
+**Resumo:** as 10 páginas ganharam mais ícones e motion design; a página de Gestão de Tráfego virou a piloto experiencial, explicando o serviço com uma demonstração interativa em vez de grades de cards.
+
+**Todas as páginas (v2)**
+- Barra de progresso de leitura, títulos que sobem palavra por palavra (texto inteiro para leitores de tela), ícones que se desenham ao aparecer.
+- Selos com ícone flutuando em volta da arte 3D, faixa animada de temas (nas páginas sem demonstração), cards com número e luz que segue o mouse, etapas que acendem em sequência, ícones orbitando o CTA final (órbita elíptica fora do texto).
+- Selos ocultos no celular; tudo parado com movimento reduzido.
+
+**Gestão de Tráfego (piloto v3)**
+- Demonstração "Veja como uma campanha ganha vida": cenário SVG conceitual (produto, público, anúncio, canais Busca/Redes sociais/Vídeo, painel "ilustração", seu contato) com 4 etapas selecionáveis — Planejamento, Anúncios (anúncio se monta e se espalha pelos canais), Otimização (A/B e barras reorganizadas), Acompanhamento (linha do painel e contato). Sem métricas nem resultados.
+- Abas acessíveis (setas, Home/End, foco), Anterior/Próximo, indicador de progresso; nada avança sozinho; texto de cada etapa com "O que você ganha".
+- Selos da abertura viram atalhos para as etapas. "O que é" editorial com fluxo Quem procura → Seu anúncio → Seu contato. "Como começar" enxuto e "Por que a GX" em lista editorial. Faixa e grade de 4 cards removidas desta página.
+- Gerador suporta demonstração e seções próprias por serviço (dado `demo` em `src/servicos/dados.js`); as outras 9 páginas seguem o modelo padrão.
+
+**Validação**
+- Teclado, anterior/próximo, selos e estados testados em 1440 e 390px; sem rolagem lateral; H1 único, títulos em ordem, sem IDs duplicados nem links quebrados; movimento reduzido sem animação; 9/9 testes da home.
+
 ## 19/11/2026 — Cards de serviço abrem a página do serviço
 
 **Resumo:** clicar (ou tocar) em qualquer parte de um card de serviço da home agora abre a página individual dele; clicar no card grande abre a página do serviço em destaque.

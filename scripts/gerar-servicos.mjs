@@ -51,8 +51,11 @@ const P = {
   camera: '<rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/>',
   palette: '<path d="M12 3a9 9 0 1 0 0 18c1.5 0 1.5-2 .5-3s0-3 2-3H18a3 3 0 0 0 3-3c0-5-4-9-9-9z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/>',
   panels: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/>',
+  users: '<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.6 2.7-6 6-6s6 2.4 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M16 14c3 .2 5 2.4 5 5.5"/>',
+  arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
 };
-const icon = (k) => `<svg class="sv-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${P[k] || P.spark}</svg>`;
+const draw = (svg) => svg.replace(/<(path|circle|rect)s/g, '<$1 pathLength="100" ');
+const icon = (k) => `<svg class="sv-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${draw(P[k] || P.spark)}</svg>`;
 
 // Motivo geométrico de cada serviço (decorativo, animado em CSS).
 const MOTIF = {
@@ -67,6 +70,98 @@ const MOTIF = {
   fluxos: '<path class="m-line" d="M20 90c120 0 160 110 280 110s100-90 140-90M20 310c120 0 160-110 280-110"/><circle class="m-a" cx="20" cy="90" r="6"/><circle class="m-b" cx="20" cy="310" r="6"/><circle class="m-c" cx="440" cy="110" r="6"/>',
   jornada: '<path class="m-line" d="M50 70h360L320 170H140zM140 190h180l-50 70h-80z"/><circle class="m-a" cx="230" cy="320" r="10"/>',
 };
+
+// ── Demonstração "campanha" (Gestão de Tráfego): cenário SVG conceitual; estados por data-step (CSS). ──
+const campanhaScene = () => '<svg class="demo-svg" viewBox="0 0 720 470" fill="none" aria-hidden="true" focusable="false">'
+  + '<path class="d-link" data-steps="plan ads" d="M190 240 C230 240 240 265 282 265"/>'
+  + '<path class="d-link" data-steps="plan" d="M375 122 C375 140 375 150 375 168"/>'
+  + '<path class="d-link" data-steps="ads" d="M470 230 C510 230 510 92 548 92"/>'
+  + '<path class="d-link" data-steps="ads" d="M470 255 C510 255 520 160 548 160"/>'
+  + '<path class="d-link" data-steps="ads" d="M470 280 C515 280 520 228 548 228"/>'
+  + '<path class="d-link" data-steps="opt track" d="M618 250 C618 270 618 285 618 300"/>'
+  + '<path class="d-link" data-steps="track" d="M375 362 C375 380 375 392 375 404"/>'
+  + '<path class="d-link" data-steps="track" d="M520 380 C480 380 470 426 452 426"/>'
+  + '<g class="d-node" data-steps="plan ads"><rect x="40" y="180" width="150" height="120" rx="18" class="d-card"/><g class="d-ico" transform="translate(91 196) scale(2)"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></g><text x="115" y="282" class="d-label">Seu produto</text></g>'
+  + '<g class="d-node" data-steps="plan opt"><circle class="d-target" cx="375" cy="72" r="64"/><rect x="300" y="22" width="150" height="100" rx="18" class="d-card"/><g class="d-ico" transform="translate(351 30) scale(2)"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.6 2.7-6 6-6s6 2.4 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M16 14c3 .2 5 2.4 5 5.5"/></g><text x="375" y="106" class="d-label">Público</text></g>'
+  + '<g class="d-node d-ad" data-steps="ads opt"><rect x="282" y="168" width="188" height="194" rx="18" class="d-card"/>'
+  + '<rect class="d-ad-img" x="298" y="184" width="156" height="78" rx="10"/><path class="d-ad-img-ico" d="M338 248l22-24 18 18 12-12 22 18"/><circle class="d-ad-img-ico" cx="350" cy="206" r="7"/>'
+  + '<rect class="d-ad-l1" x="298" y="274" width="120" height="10" rx="5"/><rect class="d-ad-l2" x="298" y="292" width="90" height="10" rx="5"/>'
+  + '<rect class="d-ad-btn" x="298" y="316" width="100" height="30" rx="8"/><text x="348" y="336" class="d-btn-t">Saiba mais</text>'
+  + '<g class="d-ab"><rect x="410" y="316" width="44" height="30" rx="8"/><text x="432" y="336">A/B</text></g></g>'
+  + '<g class="d-node d-channels" data-steps="ads"><g class="d-ch"><rect x="548" y="70" width="140" height="44" rx="22" class="d-pill"/><text x="618" y="98" class="d-pill-t">Busca</text></g>'
+  + '<g class="d-ch"><rect x="548" y="138" width="140" height="44" rx="22" class="d-pill"/><text x="618" y="166" class="d-pill-t">Redes sociais</text></g>'
+  + '<g class="d-ch"><rect x="548" y="206" width="140" height="44" rx="22" class="d-pill"/><text x="618" y="234" class="d-pill-t">Vídeo</text></g></g>'
+  + '<g class="d-node d-panel" data-steps="opt track"><rect x="520" y="300" width="190" height="150" rx="18" class="d-card"/>'
+  + '<rect class="d-bar b1" x="544" y="330" width="22" height="90" rx="4"/><rect class="d-bar b2" x="576" y="330" width="22" height="90" rx="4"/><rect class="d-bar b3" x="608" y="330" width="22" height="90" rx="4"/><rect class="d-bar b4" x="640" y="330" width="22" height="90" rx="4"/>'
+  + '<path class="d-trend" pathLength="100" d="M544 404 C570 396 590 384 612 376 S652 352 686 338"/><text x="615" y="440" class="d-cap">ilustração</text></g>'
+  + '<g class="d-node d-contact" data-steps="track"><rect x="298" y="404" width="154" height="44" rx="22" class="d-pill d-pill-on"/><text x="375" y="432" class="d-pill-t">Seu contato</text></g>'
+  + '</svg>';
+const SCENES_DEMO = { campanha: campanhaScene };
+
+const demoSections = (s) => {
+  const d = s.demo;
+  const flow = '<section class="sv-what sv-what-x sv-light" aria-labelledby="sv-what-t"><div class="sv-wrap sv-what-grid">'
+    + '<div><p class="sv-kicker">O que é ' + esc(s.nome) + '?</p><h2 id="sv-what-t" class="sv-rv">' + esc(s.oQueE) + '</h2></div>'
+    + '<ol class="sv-flow sv-rv" aria-label="Como o tráfego leva clientes até você">' + d.fluxo.map(([ic, t, x], k) => '<li style="--d:' + k + '"><span class="sv-flow-ico">' + icon(ic) + '</span><div><strong>' + esc(t) + '</strong><span>' + esc(x) + '</span></div></li>').join('') + '</ol>'
+    + '</div></section>';
+  const demo = '<section class="sv-demo" id="como-funciona" aria-labelledby="sv-demo-t"><div class="sv-wrap">'
+    + '<p class="eyebrow"><span class="dot"></span> Como funciona</p><div class="sv-demo-head"><h2 id="sv-demo-t" class="sv-rv">' + esc(d.titulo) + '</h2><p class="sv-demo-intro sv-rv">' + esc(d.intro) + '</p></div>'
+    + '<div class="demo" data-demo>'
+    + '<div class="demo-tabs" role="tablist" aria-label="Etapas da campanha">' + d.etapas.map((e, k) => '<button type="button" role="tab" id="tab-' + e.id + '" aria-controls="pan-' + e.id + '" aria-selected="' + (k === 0) + '" tabindex="' + (k ? -1 : 0) + '" data-step="' + e.id + '"><span class="demo-tab-n">' + (k + 1) + '</span>' + icon(e.ic) + '<span class="demo-tab-t">' + esc(e.t) + '</span></button>').join('') + '</div>'
+    + '<div class="demo-body"><div class="demo-scene" data-step="' + d.etapas[0].id + '">' + SCENES_DEMO[d.tipo]() + '</div>'
+    + '<div class="demo-side"><div class="demo-panels">' + d.etapas.map((e, k) => '<div class="demo-panel" role="tabpanel" id="pan-' + e.id + '" aria-labelledby="tab-' + e.id + '" data-panel="' + e.id + '"><p class="demo-count">Etapa ' + (k + 1) + ' de ' + d.etapas.length + '</p><h3>' + icon(e.ic) + esc(e.t) + '</h3><p>' + esc(e.d) + '</p><p class="demo-gain"><strong>O que você ganha:</strong> ' + esc(e.ganho) + '</p></div>').join('') + '</div>'
+    + '<div class="demo-nav"><button type="button" class="demo-prev" aria-label="Etapa anterior">' + icon('arrow') + '</button><div class="demo-dots" aria-hidden="true">' + d.etapas.map(() => '<i></i>').join('') + '</div><button type="button" class="demo-next" aria-label="Próxima etapa">' + icon('arrow') + '</button></div>'
+    + '</div></div></div></div></section>';
+  const start = '<section class="sv-start" aria-labelledby="sv-start-t"><div class="sv-wrap"><h2 id="sv-start-t" class="sv-kicker">Como começar</h2><ol class="sv-start-list">'
+    + ETAPAS.slice(0, 3).map(([ic, t, x], k) => '<li class="sv-rv" style="--d:' + k + '"><span class="sv-start-n">' + (k + 1) + '</span><div><strong>' + esc(t) + '</strong><span>' + esc(x) + '</span></div></li>').join('')
+    + '</ol></div></section>';
+  const diff = '<section class="sv-diff sv-diff-x sv-light" aria-labelledby="sv-diff-t"><div class="sv-wrap sv-what-grid"><div><p class="sv-kicker">Por que a GX Smart</p><h2 id="sv-diff-t" class="sv-rv">Um estúdio, várias conexões para a sua marca.</h2></div><ul class="sv-diff-list">'
+    + DIFERENCIAIS.map(([ic, t, x], k) => '<li class="sv-rv" style="--d:' + k + '"><span class="sv-flow-ico">' + icon(ic) + '</span><div><h3>' + esc(t) + '</h3><p>' + esc(x) + '</p></div></li>').join('')
+    + '</ul></div></section>';
+  return flow + '\n' + demo + '\n' + start + '\n' + diff;
+};
+
+const defaultSections = (s) => `  <section class="sv-what sv-light" aria-labelledby="sv-what-t">
+    <div class="sv-wrap">
+      <p class="sv-kicker">O que é ${esc(s.nome)}?</p>
+      <h2 id="sv-what-t" class="sv-rv">${esc(s.oQueE)}</h2>
+      <ul class="sv-points">
+        ${s.pontos.map(([ic, t, d]) => `<li class="sv-rv">${icon(ic)}<strong>${esc(t)}</strong><span>${esc(d)}</span></li>`).join('\n        ')}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sv-help" aria-labelledby="sv-help-t">
+    <div class="sv-wrap">
+      <p class="eyebrow"><span class="dot"></span> Como a GX Smart ajuda</p>
+      <h2 id="sv-help-t" class="sv-rv">O que podemos construir juntos em ${esc(s.nome)}.</h2>
+      <div class="sv-cards">
+        ${s.ajuda.map(([ic, t, d], k) => `<article class="sv-card sv-rv" style="--d:${k}"><span class="sv-card-n" aria-hidden="true">${String(k + 1).padStart(2, '0')}</span><span class="sv-card-ico">${icon(ic)}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></article>`).join('\n        ')}
+      </div>
+    </div>
+  </section>
+
+  <section class="sv-steps" id="como-funciona" aria-labelledby="sv-steps-t">
+    <div class="sv-wrap">
+      <p class="eyebrow"><span class="dot"></span> Como funciona</p>
+      <h2 id="sv-steps-t" class="sv-rv">Do primeiro contato ao próximo passo.</h2>
+      <ol class="sv-timeline">
+        ${ETAPAS.map(([ic, t, d], k) => `<li class="sv-rv" style="--d:${k}"><span class="sv-step-ico">${icon(ic)}</span><span class="sv-step-n">ETAPA ${String(k + 1).padStart(2, '0')}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join('\n        ')}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sv-diff sv-light" aria-labelledby="sv-diff-t">
+    <div class="sv-wrap">
+      <p class="sv-kicker">Por que a GX Smart</p>
+      <h2 id="sv-diff-t" class="sv-rv">Um estúdio, várias conexões para a sua marca.</h2>
+      <div class="sv-diff-grid">
+        ${DIFERENCIAIS.map(([ic, t, d]) => `<div class="sv-rv">${icon(ic)}<h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('\n        ')}
+      </div>
+    </div>
+  </section>
+
+`;
 
 const pageFor = (s, i) => {
   const [art, artH] = ART[s.kind];
@@ -101,6 +196,7 @@ const pageFor = (s, i) => {
 <body class="sv-page sv-${s.kind}">
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 ${header}
+<div class="sv-progress" aria-hidden="true"><span></span></div>
 <main id="conteudo">
   <section class="sv-hero" aria-labelledby="sv-title">
     <svg class="sv-motif motif-${s.motif}" viewBox="0 0 460 400" fill="none" aria-hidden="true">${MOTIF[s.motif] || ''}</svg>
@@ -114,51 +210,16 @@ ${header}
         <a class="text-link" href="#como-funciona">Ver como funciona <span aria-hidden="true">↓</span></a>
       </div>
     </div>
-    <div class="sv-art" aria-hidden="true">
-      <svg class="sv-orbits" viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="200"/><circle class="o2" cx="300" cy="300" r="270"/><path class="o3" d="M100 300a200 200 0 0 1 200-200"/></svg>
-      <div class="sv-float"><img src="${art}" width="640" height="${artH}" alt="" fetchpriority="high" decoding="async" /></div>
+    <div class="sv-art"${s.demo ? '' : ' aria-hidden="true"'}>
+      <svg class="sv-orbits" aria-hidden="true" viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="200"/><circle class="o2" cx="300" cy="300" r="270"/><path class="o3" d="M100 300a200 200 0 0 1 200-200"/></svg>
+      <div class="sv-float" aria-hidden="true"><img src="${art}" width="640" height="${artH}" alt="" fetchpriority="high" decoding="async" /></div>
+      ${s.pontos.map(([ic, t], k) => s.demo ? `<a class="sv-chip sv-chip-${k + 1}" style="--i:${k}" href="#como-funciona" data-goto="${s.demo.etapas[s.demo.chips[k]].id}" aria-label="Ver ${esc(t)} na demonstração">${icon(ic)}<em>${esc(t)}</em></a>` : `<span class="sv-chip sv-chip-${k + 1}" style="--i:${k}">${icon(ic)}<em>${esc(t)}</em></span>`).join('')}
     </div>
   </section>
 
-  <section class="sv-what sv-light" aria-labelledby="sv-what-t">
-    <div class="sv-wrap">
-      <p class="sv-kicker">O que é ${esc(s.nome)}?</p>
-      <h2 id="sv-what-t" class="sv-rv">${esc(s.oQueE)}</h2>
-      <ul class="sv-points">
-        ${s.pontos.map(([ic, t, d]) => `<li class="sv-rv">${icon(ic)}<strong>${esc(t)}</strong><span>${esc(d)}</span></li>`).join('\n        ')}
-      </ul>
-    </div>
-  </section>
+  ${s.demo ? '' : `<div class="sv-marquee" aria-hidden="true"><div class="sv-mq-track">${[0, 1].map(() => [...s.pontos, ...s.ajuda].map(([ic, t]) => `<span>${icon(ic)}${esc(t)}</span>`).join('')).join('')}</div></div>`}
 
-  <section class="sv-help" aria-labelledby="sv-help-t">
-    <div class="sv-wrap">
-      <p class="eyebrow"><span class="dot"></span> Como a GX Smart ajuda</p>
-      <h2 id="sv-help-t" class="sv-rv">O que podemos construir juntos em ${esc(s.nome)}.</h2>
-      <div class="sv-cards">
-        ${s.ajuda.map(([ic, t, d], k) => `<article class="sv-card sv-rv" style="--d:${k}"><span class="sv-card-ico">${icon(ic)}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></article>`).join('\n        ')}
-      </div>
-    </div>
-  </section>
-
-  <section class="sv-steps" id="como-funciona" aria-labelledby="sv-steps-t">
-    <div class="sv-wrap">
-      <p class="eyebrow"><span class="dot"></span> Como funciona</p>
-      <h2 id="sv-steps-t" class="sv-rv">Do primeiro contato ao próximo passo.</h2>
-      <ol class="sv-timeline">
-        ${ETAPAS.map(([ic, t, d], k) => `<li class="sv-rv" style="--d:${k}"><span class="sv-step-ico">${icon(ic)}</span><span class="sv-step-n">ETAPA ${String(k + 1).padStart(2, '0')}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join('\n        ')}
-      </ol>
-    </div>
-  </section>
-
-  <section class="sv-diff sv-light" aria-labelledby="sv-diff-t">
-    <div class="sv-wrap">
-      <p class="sv-kicker">Por que a GX Smart</p>
-      <h2 id="sv-diff-t" class="sv-rv">Um estúdio, várias conexões para a sua marca.</h2>
-      <div class="sv-diff-grid">
-        ${DIFERENCIAIS.map(([ic, t, d]) => `<div class="sv-rv">${icon(ic)}<h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('\n        ')}
-      </div>
-    </div>
-  </section>
+  ${s.demo ? demoSections(s) : defaultSections(s)}
 
   <section class="sv-faq" aria-labelledby="sv-faq-t">
     <div class="sv-wrap">
@@ -182,6 +243,7 @@ ${header}
 
   <section class="sv-cta" aria-labelledby="sv-cta-t">
     <svg class="sv-cta-rings" viewBox="0 0 600 600" fill="none" aria-hidden="true"><circle cx="300" cy="300" r="150"/><circle cx="300" cy="300" r="230"/><circle cx="300" cy="300" r="300"/></svg>
+    <div class="sv-cta-orbit" aria-hidden="true">${s.ajuda.map(([ic], k) => `<span style="--k:${k}">${icon(ic)}</span>`).join('')}</div>
     <div class="sv-wrap">
       <h2 id="sv-cta-t" class="sv-rv">Pronto para levar sua marca mais longe?</h2>
       <p class="sv-rv">Conte para a equipe o que você precisa em ${esc(s.nome)}.</p>

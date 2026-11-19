@@ -125,6 +125,20 @@ export const SERVICOS = [
     ajuda: [['map', 'Planejamento de campanhas', 'Definir objetivos, público e mensagens.'], ['megaphone', 'Anúncios', 'Campanhas para divulgar produtos e serviços.'], ['loop', 'Otimização', 'Ajustes a partir do que os dados mostram.'], ['chart', 'Clareza', 'Entender para onde o investimento está indo.']],
     faq: [['O investimento em anúncios está incluso?', 'Isso é tratado com a equipe na proposta. Fale com a GX Smart para entender como funciona no seu caso.']],
     relacionados: ['marketing-digital', 'landing-pages', 'marketplaces'],
+    // Página piloto experiencial: demonstração conceitual (sem métricas reais nem resultados prometidos).
+    demo: {
+      tipo: 'campanha',
+      fluxo: [['users', 'Quem procura', 'Pessoas buscando o que você oferece.'], ['megaphone', 'Seu anúncio', 'A mensagem certa no lugar certo.'], ['chat', 'Seu contato', 'Um novo cliente falando com você.']],
+      titulo: 'Veja como uma campanha ganha vida.',
+      intro: 'Uma demonstração ilustrativa das fases da gestão de tráfego. Escolha uma etapa para ver o que acontece.',
+      etapas: [
+        { id: 'plan', ic: 'map', t: 'Planejamento', d: 'Antes de investir, definimos objetivo, público e mensagem da campanha.', ganho: 'Campanhas com direção clara desde o início.' },
+        { id: 'ads', ic: 'megaphone', t: 'Anúncios', d: 'Os anúncios são criados e publicados nos canais escolhidos para a sua marca.', ganho: 'Sua marca aparecendo para quem procura o que você oferece.' },
+        { id: 'opt', ic: 'loop', t: 'Otimização', d: 'Variações são comparadas e a campanha é ajustada a partir do que os dados mostram.', ganho: 'Investimento direcionado ao que funciona melhor.' },
+        { id: 'track', ic: 'chart', t: 'Acompanhamento', d: 'Você acompanha o andamento e decide os próximos passos junto com a equipe.', ganho: 'Clareza sobre para onde o investimento está indo.' },
+      ],
+      chips: [1, 0, 2], // selos da abertura → etapa da demonstração (Anúncios, Direcionamento, Ajustes)
+    },
   },
   {
     slug: 'landing-pages', nome: 'Landing Pages', kind: 'landing', tag: 'Páginas de conversão', motif: 'jornada',

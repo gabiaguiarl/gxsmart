@@ -4,6 +4,17 @@
 const root = document.documentElement;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Títulos sobem palavra por palavra (o texto continua inteiro para leitores de tela).
+if (!reduced) {
+  document.querySelectorAll('.sv-hero h1, .sv-page h2.sv-rv').forEach((h) => {
+    if (h.querySelector('.sv-w')) return;
+    const words = h.textContent.trim().split(/\s+/);
+    h.setAttribute('aria-label', h.textContent.trim());
+    h.innerHTML = words.map((w, i) => `<span class="sv-w" aria-hidden="true"><span style="--w:${i}">${w.replace(/</g, '&lt;')}</span></span>`).join(' ');
+    h.classList.add('sv-split');
+  });
+}
+
 const io = new IntersectionObserver((entries) => entries.forEach((e) => {
   if (!e.isIntersecting) return;
   e.target.classList.add('is-in');
@@ -43,3 +54,59 @@ if (art && hero && !reduced && matchMedia('(hover: hover) and (pointer: fine)').
   });
   hero.addEventListener('pointerleave', () => { art.style.setProperty('--ry', '0deg'); art.style.setProperty('--rx', '0deg'); });
 }
+
+// Barra de progresso de leitura.
+const bar = document.querySelector('.sv-progress span');
+if (bar) {
+  let tick = 0;
+  const upd = () => { tick = 0; const max = document.documentElement.scrollHeight - innerHeight; bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`; };
+  addEventListener('scroll', () => { if (!tick) tick = requestAnimationFrame(upd); }, { passive: true });
+  upd();
+}
+
+// Cards: luz roxa que acompanha o mouse.
+if (!reduced && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.querySelectorAll('.sv-card, .sv-diff-grid > div, .sv-rel-list a').forEach((card) => {
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      card.style.setProperty('--my', `${e.clientY - r.top}px`);
+    });
+  });
+}
+
+// Demonstração interativa (abas acessíveis): o cenário muda de estado por data-step (CSS faz a animação).
+document.querySelectorAll('[data-demo]').forEach((demo) => {
+  const tabs = [...demo.querySelectorAll('[role="tab"]')];
+  const panels = [...demo.querySelectorAll('[role="tabpanel"]')];
+  const scene = demo.querySelector('.demo-scene');
+  const dots = [...demo.querySelectorAll('.demo-dots i')];
+  let cur = 0;
+  const show = (i, focus) => {
+    cur = (i + tabs.length) % tabs.length;
+    tabs.forEach((t, k) => { const on = k === cur; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+    panels.forEach((p, k) => { p.hidden = k !== cur; });
+    dots.forEach((d, k) => d.classList.toggle('on', k <= cur));
+    scene.dataset.step = tabs[cur].dataset.step;
+    scene.classList.remove('is-anim'); void scene.offsetWidth; scene.classList.add('is-anim');
+    if (focus) tabs[cur].focus();
+  };
+  tabs.forEach((t, k) => {
+    t.addEventListener('click', () => show(k));
+    t.addEventListener('keydown', (e) => {
+      const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+      if (e.key in keys) { e.preventDefault(); show(cur + keys[e.key], true); }
+      else if (e.key === 'Home') { e.preventDefault(); show(0, true); }
+      else if (e.key === 'End') { e.preventDefault(); show(tabs.length - 1, true); }
+    });
+  });
+  demo.querySelector('.demo-prev')?.addEventListener('click', () => show(cur - 1));
+  demo.querySelector('.demo-next')?.addEventListener('click', () => show(cur + 1));
+  // Selos da abertura levam direto a uma etapa.
+  document.querySelectorAll('[data-goto]').forEach((a) => a.addEventListener('click', () => {
+    const k = tabs.findIndex((t) => t.dataset.step === a.dataset.goto);
+    if (k >= 0) show(k);
+  }));
+  demo.classList.add('is-ready');
+  show(0);
+});

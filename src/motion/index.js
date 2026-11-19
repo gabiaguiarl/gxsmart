@@ -71,8 +71,7 @@ function transitions() {
   // 3. Natureza → Diferença: dawn — see nature() (white light expands from the leaves).
   // 4. Diferença → Jornada: a technological grid dissolves cell by cell.
   gsap.to('.grid-dissolve i', { opacity: 0, ease: EASE.scroll, stagger: { each: 0.02, from: 'random' }, scrollTrigger: { trigger: '.process', start: 'top 90%', end: 'top 25%', scrub: SCRUB.base } });
-  // 5. Network line under services draws with scroll (kept from v2).
-  gsap.fromTo('.network-transition .connection-grid path', { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: EASE.scroll, scrollTrigger: { trigger: '.network-transition', start: 'top 95%', end: 'bottom 45%', scrub: SCRUB.base } });
+  // 5. Network graph under services: see connect-graph.js (plays once on entering the viewport).
 }
 
 /* ───────────────────────── SCROLL — content choreography (all widths) ───────────────────────── */
@@ -296,9 +295,33 @@ function servicesUI() {
     counter.textContent = String(i + 1).padStart(2, '0');
     if (ring) ring.style.strokeDashoffset = String(1 - (i + 1) / n);
   };
+  // State rule (Etapa B): hover previews (desktop mouse, 70ms intent / 160ms release, no flicker
+  // between cards) > a pinned choice (click, tap or keyboard focus) > the card at the reading line.
+  // A pin lasts until another selection, or until the pinned card has scrolled out of view.
+  let pinned = -1, hovered = -1, scrolled = 0, timer = 0, lastScroll = -1;
+  const view = () => select(hovered >= 0 ? hovered : pinned >= 0 ? pinned : scrolled);
   select(0);
-  // The whole card selects (the heading button is the accessible control); the CTA link keeps its own job.
-  cards.forEach((c, i) => c.addEventListener('click', (e) => { if (!e.target.closest('a')) select(i); }));
+  const hoverable = matchMedia('(hover: hover) and (pointer: fine)');
+  cards.forEach((c, i) => {
+    // The whole card selects (the heading button is the accessible control); the CTA link keeps its own job.
+    c.addEventListener('click', (e) => { if (!e.target.closest('a')) { pinned = i; view(); } });
+    c.addEventListener('focusin', () => { pinned = i; view(); });
+    c.addEventListener('pointerenter', (e) => { if (e.pointerType !== 'mouse' || !hoverable.matches) return; clearTimeout(timer); timer = setTimeout(() => { hovered = i; view(); }, 70); });
+    c.addEventListener('pointerleave', (e) => { if (e.pointerType !== 'mouse') return; clearTimeout(timer); timer = setTimeout(() => { hovered = -1; view(); }, 160); });
+  });
+  const line = () => {
+    if (window.innerWidth >= 900) return window.innerHeight * 0.45;
+    const stage = q('.sc-stage', root), bottom = parseFloat(getComputedStyle(stage).top) + stage.offsetHeight;
+    return bottom + Math.max(0, window.innerHeight - bottom) * 0.35;
+  };
+  const onScroll = (self) => {
+    const i = Math.min(n - 1, Math.floor(self.progress * n));
+    if (i === lastScroll) return;
+    lastScroll = scrolled = i;
+    if (pinned >= 0) { const r = cards[pinned].getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) pinned = -1; }
+    view();
+  };
+  ScrollTrigger.create({ trigger: q('.sc-cards', root), start: () => `top ${line()}px`, end: () => `bottom ${line()}px`, invalidateOnRefresh: true, onUpdate: onScroll, onRefresh: onScroll });
 }
 
 /* ───────────────────────── CINEMATIC — "SEU PRODUTO ESTÁ PARADO?" (5.0) ─────────────────────────

@@ -25,7 +25,8 @@ export function techCube() {
   return '<div class="cube-stage" aria-hidden="true"><div class="tech-cube"><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="cube-orbit"></span></div>';
 }
 export function connectionGrid() {
-  return `<svg class="connection-grid" viewBox="0 0 800 180" fill="none" aria-hidden="true"><path pathLength="1" d="M0 90h120l80-60h150l100 120h150l80-60h120M120 90l80 60h150L450 30h150l80 60M200 30v120M350 30v120M450 30v120M600 30v120"/>${[[120,90],[200,30],[200,150],[350,30],[350,150],[450,30],[450,150],[600,30],[600,150],[680,90]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4"/>`).join('')}</svg>`;
+  // Filled and animated by connect-graph.js (layout depends on the real box and label size).
+  return '<svg class="net-graph" aria-hidden="true" focusable="false"></svg>';
 }
 // Marketplace card (service list only): layered 2.5D composition from the supplied reference image.
 // The stage fallback keeps serviceVisual('marketplace').

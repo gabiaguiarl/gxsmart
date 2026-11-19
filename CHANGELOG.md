@@ -2,6 +2,25 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 18/11/2026 — Etapa B: cards por hover e animação geométrica de conexões
+
+**Resumo:** os cards de serviços passam a atualizar o card principal ao passar o mouse, com uma regra de estado única para mouse, toque, teclado e rolagem; a estrutura de pontos e linhas de "Ideias conectadas" vira uma animação geométrica em SVG que se organiza ao entrar na tela.
+
+**Cards de serviços**
+- Desktop (mouse): hover mostra o serviço no card principal (imagem 3D, título, numeração e destaque). Atraso de 70ms para entrar e 160ms para voltar, sem piscadas ao cruzar vários cards.
+- Regra de estado: hover (prévia) > seleção fixa (clique, toque ou foco do teclado) > card na linha de leitura durante a rolagem. A seleção fixa vale até outra seleção ou até o card sair da tela.
+- Celular: toque seleciona; pequenas rolagens não desfazem a escolha. Teclado: focar um card o seleciona.
+- Borda discreta no hover dos cards inativos; troca do palco mais ágil (0,3–0,45s).
+
+**"Ideias conectadas"**
+- Novo módulo connect-graph.js (SVG + requestAnimationFrame, sem dependências): pontos partem de uma distribuição em espiral de ângulo áureo, viajam até uma rede simétrica com leve ajuste final, e as linhas se desenham do rótulo para as bordas; o rótulo termina com borda roxa acesa.
+- Toca uma vez ao entrar na tela (~1,5s). Layout calculado pelo tamanho real: horizontal no desktop, vertical no celular (seção com 300px).
+- Hover (mouse): pontos próximos se inclinam até 6px na direção do cursor. Movimento reduzido: estrutura final exibida direto.
+- A rede estática anterior e sua animação de rolagem foram substituídas.
+
+**Observações técnicas**
+- 9/9 testes; interações dos cards testadas automaticamente em 1440 e 390px; sem rolagem lateral e sem erros no console.
+
 ## 18/11/2026 — Etapa A: hero simplificado, seção de vendas removida e "O que nos guia"
 
 **Resumo:** primeira etapa do refinamento final de UX e comunicação. A abertura passa a dizer o que a GX faz em uma frase e oferece só duas ações; a seção "Seu produto está parado?" sai; o rótulo de "O que nos guia" ganha presença. Título, GX 3D e animações tipográficas preservados.

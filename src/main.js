@@ -8,6 +8,7 @@ import './motion.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { buildContactUrl } from './data.js';
+import { initConnectGraph } from './connect-graph.js';
 
 import { renderHome } from './render.js';
 import { initMotion, animateFilter } from './motion/index.js';
@@ -48,6 +49,7 @@ document.querySelectorAll('nav a[href^="#"]').forEach(link=>{
   }});
 });
 initMotion();
+initConnectGraph();
 // Pins are created inside matchMedia after content triggers: re-sort so every
 // trigger below the pinned manifesto accounts for its spacing.
 ScrollTrigger.sort();

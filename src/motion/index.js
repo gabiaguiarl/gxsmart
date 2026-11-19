@@ -115,11 +115,10 @@ function portfolio() {
     start: 'top 90%',
     onEnter: (b) => {
       gsap.to(b.map((p) => q('.project-image', p)), { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.1, ease: EASE.inOut, stagger: 0.12, overwrite: true });
-      gsap.fromTo(b.map((p) => q('.project-image img', p)), { scale: 1.3 }, { scale: 1, duration: 1.6, ease: EASE.out, stagger: 0.12 });
       gsap.fromTo(b.map((p) => q('.project-caption', p)), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: DUR.base, ease: EASE.out, stagger: 0.12, delay: 0.35 });
     },
   });
-  projects.forEach((p) => gsap.to(q('.project-image img', p), { y: -40, ease: EASE.scroll, scrollTrigger: { trigger: p, start: 'top bottom', end: 'bottom top', scrub: SCRUB.base } }));
+  // Etapa C: logo cards stay centred (no image zoom/parallax); the clip reveal above is the entrance.
 }
 
 /* ───────────────────────── CINEMATIC — pinned manifesto (desktop) ─────────────────────────

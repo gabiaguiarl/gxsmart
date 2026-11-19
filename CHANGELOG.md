@@ -2,6 +2,24 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 18/11/2026 — Etapa C: portfólio com logos e revisão de usabilidade
+
+**Resumo:** o portfólio "Cada marca. Um universo." passa a apresentar as logos oficiais dos clientes em cards minimalistas, no lugar das capturas de tela; textos de leitura e botões ficam maiores e os CTAs de serviço ganham nomes acessíveis únicos.
+
+**Portfólio**
+- Logos oficiais baixadas dos sites dos clientes (Samsara Essence, Fênix Services, MDG Automação), convertidas para branco monocromático (WebP, 8–19KB) para legibilidade no fundo preto, sem alterar desenho nem proporções.
+- Loja Fênix usa a logo da Fênix Services (subdomínio da marca; a mesma logo aparece no cabeçalho da loja).
+- Sem logo disponível, fallback tipográfico identificado no código (data-logo="pendente"): Área Monitorada (o site usa a marca da Fênix, sem logo própria) e VDM3D (domínio vdm3d.com.br não resolve; link do projeto mantido).
+- Cards com fundo quase preto, logo centralizada com respiro, hover/foco com leve zoom e brilho roxo; zoom e parallax das antigas capturas removidos. Links, filtros e estrutura preservados; capturas mantidas no projeto.
+
+**Usabilidade (WCAG 2.2 AA como referência)**
+- Textos de leitura de 12–14px para 15–18px (O estúdio, descrições de serviços, manifesto, jornada, contato); notas do formulário em 14px.
+- Botões e links principais de 11px para 13px no desktop.
+- CTAs "Vamos conversar" com nome acessível único ("Vamos conversar sobre Marketplaces" etc.), contendo o texto visível.
+
+**Observações técnicas**
+- 9/9 testes; sem rolagem lateral em 1440, 1280, 768, 390 e 360px; sem erros no console.
+
 ## 18/11/2026 — Etapa B: cards por hover e animação geométrica de conexões
 
 **Resumo:** os cards de serviços passam a atualizar o card principal ao passar o mouse, com uma regra de estado única para mouse, toque, teclado e rolagem; a estrutura de pontos e linhas de "Ideias conectadas" vira uma animação geométrica em SVG que se organiza ao entrar na tela.

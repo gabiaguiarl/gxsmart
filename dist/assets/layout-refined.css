@@ -322,3 +322,30 @@ body .network-transition>span{z-index:1;transition:border-color .6s ease,box-sha
 body .network-transition.is-linked>span{border-color:#7809ac;box-shadow:0 0 0 1px #7809ac40,0 0 28px #7809ac33}
 @media (max-width:899px){body .network-transition{height:300px}}
 @media (prefers-reduced-motion:reduce){body .network-transition>span{transition:none}}
+
+/* ═══ Etapa C — Portfólio com logos dos clientes ═══
+   Logos oficiais (dos sites dos clientes) em branco monocromático, centralizadas e sem distorção;
+   sem logo disponível: nome do cliente em tipografia do site (data-logo="pendente"). */
+.portfolio .project-image.project-logo{position:relative;aspect-ratio:16/10;display:grid;place-items:center;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 40%,#121216 0%,#09090b 62%,#060607 100%);border:1px solid #ffffff14;border-radius:14px;
+  transition:border-color .45s ease,box-shadow .45s ease}
+.portfolio .project-image.project-logo:after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:radial-gradient(60% 55% at 50% 50%,#7809ac2e,#7809ac00 70%);transition:opacity .5s ease}
+.portfolio .project-image.project-logo img{width:auto!important;height:auto!important;max-width:44%;max-height:52%;object-fit:contain;
+  opacity:.88;transform:none;transition:opacity .4s ease,transform .6s cubic-bezier(.2,.8,.2,1)!important;position:relative;z-index:1}
+.portfolio .project-image.logo-wide img{max-width:52%;max-height:40%}
+.portfolio .project-image.logo-square img{max-width:40%;max-height:58%}
+.portfolio .logo-fallback{position:relative;z-index:1;font-size:clamp(22px,2.2vw,30px);font-weight:500;letter-spacing:-.02em;color:#ece8f0;
+  padding-bottom:12px;border-bottom:1px solid #7809ac;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.portfolio .project>a:is(:hover,:focus-visible) .project-logo{border-color:#7809ac99;box-shadow:0 18px 40px -24px #7809ac80}
+.portfolio .project>a:is(:hover,:focus-visible) .project-logo:after{opacity:1}
+.portfolio .project>a:is(:hover,:focus-visible) .project-logo img{opacity:1;transform:scale(1.04)!important}
+.portfolio .project>a:is(:hover,:focus-visible) .logo-fallback{transform:translateY(-3px)}
+.portfolio .project-logo .project-arrow{z-index:2}
+@media (prefers-reduced-motion:reduce){.portfolio .project>a:is(:hover,:focus-visible) :is(.project-logo img,.logo-fallback){transform:none!important}}
+/* Etapa C — revisão de usabilidade: leitura confortável e botões evidentes para todos os públicos. */
+html body :is(.about-bottom p,.service-copy p,.contact-cta p){font-size:16px;line-height:1.6}
+html body :is(.story-copy p,.story-next p){font-size:clamp(16px,1.3vw,18px);line-height:1.55}
+html body :is(.process ol li p,.process .section-title p){font-size:15px;line-height:1.6}
+html body .contact form .form-note,html body .contact .form-status{font-size:14px;line-height:1.6}
+html body :is(.hero-actions .button,.hero-actions .text-link,.contact-cta .button,.sc-cards .service-action,.contact form .text-link,.services-heading .text-link){font-size:13px;letter-spacing:.06em}

@@ -1,9 +1,11 @@
+// logo: official client mark (monochrome white, from the client's own site). No logo = typographic
+// fallback flagged data-logo="pendente" (Área Monitorada uses the Fênix brand; vdm3d.com.br is offline).
 export const projects = [
-  { name: 'Samsara Essence', category: 'E-commerce', image: 'samsara.png', url: 'https://samsaraessence.com.br/' },
-  { name: 'Fênix Services', category: 'Institucional', image: 'fenix.png', url: 'https://fenixservices.com.br/' },
-  { name: 'MDG Automação', category: 'E-commerce', image: 'mdg.png', url: 'https://mdgautomacao.com.br/' },
+  { name: 'Samsara Essence', category: 'E-commerce', image: 'samsara.png', logo: { file: 'samsara.webp', w: 444, h: 494 }, url: 'https://samsaraessence.com.br/' },
+  { name: 'Fênix Services', category: 'Institucional', image: 'fenix.png', logo: { file: 'fenix.webp', w: 324, h: 170 }, url: 'https://fenixservices.com.br/' },
+  { name: 'MDG Automação', category: 'E-commerce', image: 'mdg.png', logo: { file: 'mdg.webp', w: 505, h: 560 }, url: 'https://mdgautomacao.com.br/' },
   { name: 'Área Monitorada', category: 'Institucional', image: 'area.png', url: 'https://areamonitorada.com.br/' },
-  { name: 'Loja Fênix', category: 'E-commerce', image: 'loja-fenix.png', url: 'https://loja.fenixservices.com.br/' },
+  { name: 'Loja Fênix', category: 'E-commerce', image: 'loja-fenix.png', logo: { file: 'fenix.webp', w: 324, h: 170 }, url: 'https://loja.fenixservices.com.br/' },
   { name: 'VDM3D', category: 'E-commerce', image: 'vdm.png', url: 'https://vdm3d.com.br/' },
 ];
 // Order = commercial priority (sales channels first). [title, description, tag, icon, kind]

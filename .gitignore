@@ -17,3 +17,6 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Publicacao (host/usuario FTP locais; a senha nunca e gravada)
+publicar.config

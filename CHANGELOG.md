@@ -2,6 +2,14 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 18/11/2026 — Publicação no subdomínio novo.gxsmart.com.br
+
+**Resumo:** script de publicação com dois cliques para a Hostinger, sem guardar senha.
+
+- publicar.cmd / publicar.ps1: monta o pacote a partir de dist/ (sem backups .before-*, imagens de referência e capturas antigas do portfólio: 35 arquivos, ~1,6 MB) e envia por FTPS (curl do Windows) para public_html/novo, com confirmação antes do envio. Modo publicar.cmd -SemEnviar só gera o pacote.
+- Senha pedida a cada execução, oculta e nunca gravada (arquivo temporário do curl removido mesmo em caso de erro); host e usuário em publicar.config, ignorado pelo Git. Envio só com TLS.
+- .htaccess (public/ e dist/): HTTPS obrigatório, compressão e cache (HTML sempre revalidado, estáticos por 30 dias).
+
 ## 18/11/2026 — Etapa C: portfólio com logos e revisão de usabilidade
 
 **Resumo:** o portfólio "Cada marca. Um universo." passa a apresentar as logos oficiais dos clientes em cards minimalistas, no lugar das capturas de tela; textos de leitura e botões ficam maiores e os CTAs de serviço ganham nomes acessíveis únicos.

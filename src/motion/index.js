@@ -303,11 +303,15 @@ function servicesUI() {
   const hoverable = matchMedia('(hover: hover) and (pointer: fine)');
   cards.forEach((c, i) => {
     // The whole card selects (the heading button is the accessible control); the CTA link keeps its own job.
-    c.addEventListener('click', (e) => { if (!e.target.closest('a')) { pinned = i; view(); } });
+    // Clique no card abre a página do serviço (o link 'Vamos conversar' mantém o próprio destino).
+    c.addEventListener('click', (e) => { if (e.target.closest('a')) return; const more = c.querySelector('.service-more'); if (more) location.assign(more.href); else { pinned = i; view(); } });
     c.addEventListener('focusin', () => { pinned = i; view(); });
     c.addEventListener('pointerenter', (e) => { if (e.pointerType !== 'mouse' || !hoverable.matches) return; clearTimeout(timer); timer = setTimeout(() => { hovered = i; view(); }, 70); });
     c.addEventListener('pointerleave', (e) => { if (e.pointerType !== 'mouse') return; clearTimeout(timer); timer = setTimeout(() => { hovered = -1; view(); }, 160); });
   });
+  // Clique no card grande (palco) abre a página do serviço em destaque.
+  const stageEl = q('.sc-stage', root);
+  if (stageEl) { stageEl.style.cursor = 'pointer'; stageEl.addEventListener('click', () => { const more = cards[active] && cards[active].querySelector('.service-more'); if (more) location.assign(more.href); }); }
   const line = () => {
     if (window.innerWidth >= 900) return window.innerHeight * 0.45;
     const stage = q('.sc-stage', root), bottom = parseFloat(getComputedStyle(stage).top) + stage.offsetHeight;

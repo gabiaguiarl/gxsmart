@@ -2,6 +2,16 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 19/11/2026 — Cards de serviço abrem a página do serviço
+
+**Resumo:** clicar (ou tocar) em qualquer parte de um card de serviço da home agora abre a página individual dele; clicar no card grande abre a página do serviço em destaque.
+
+- Card pequeno: clique em qualquer área (texto, imagem, título) → `/servicos/<slug>/`; Enter no título pelo teclado faz o mesmo.
+- Card grande (palco): abre a página do serviço que está em destaque (selecionado por hover, foco ou rolagem).
+- "Vamos conversar" mantém o destino (formulário de contato com o serviço preenchido).
+- Hover no desktop continua mostrando a prévia no palco.
+- Testado: cliques em cards, palco e "Vamos conversar" no desktop e toque no celular; 9/9 testes.
+
 ## 19/11/2026 — Fase 5: páginas individuais dos 10 serviços (texto provisório)
 
 **Resumo:** cada card da home agora leva a uma página própria do serviço, com a mesma identidade visual, motion leve e conteúdo comercial introdutório. Os textos são provisórios (baseados no que a home já diz) e serão refinados com as informações da GX Smart.

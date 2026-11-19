@@ -2,6 +2,25 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 19/11/2026 — Fase 5: páginas individuais dos 10 serviços (texto provisório)
+
+**Resumo:** cada card da home agora leva a uma página própria do serviço, com a mesma identidade visual, motion leve e conteúdo comercial introdutório. Os textos são provisórios (baseados no que a home já diz) e serão refinados com as informações da GX Smart.
+
+**Páginas** (`/servicos/<slug>/`): Marketplaces, E-commerce, Lives de Vendas, Marketing Digital, Desenvolvimento de Sites, Social Media, Produção Audiovisual, Design Digital, Gestão de Tráfego e Landing Pages. `/servicos/` redireciona para os serviços da home.
+- Estrutura: abertura com a composição 3D existente (flutuação, anéis orbitais, leve inclinação com o mouse) e motivo geométrico próprio de cada serviço; o que é (seção branca); como a GX ajuda; como funciona (etapas ligadas por linha animada); por que a GX (branca, só fatos do site); perguntas frequentes (sem preços ou prazos); serviços que combinam; CTA final com WhatsApp e formulário.
+- Variação controlada: arte à direita ou à esquerda conforme o serviço, motivos e fundos distintos.
+- Projetos relacionados omitidos (nenhum case confirmado por serviço).
+
+**Técnica**
+- HTML estático e indexável gerado por `node scripts/gerar-servicos.mjs` a partir de `src/servicos/dados.js`; cabeçalho e rodapé copiados da home.
+- `servico.css` e `servico.js` próprios (IntersectionObserver + CSS, sem GSAP e sem dependências); conteúdo visível sem JS e com movimento reduzido.
+- SEO: title, meta description e Open Graph próprios, H1 único, hierarquia de títulos, dados estruturados (Service).
+- Home: link "Conhecer o serviço →" em cada card.
+- Documentação: `docs/10-PAGINAS-DE-SERVICOS.md`.
+
+**Validação**
+- 10 páginas com título e descrição únicos, H1 único, JSON-LD válido, sem links ou arquivos quebrados; sem rolagem lateral em 390 e 1440px; 9/9 testes da home.
+
 ## 19/11/2026 — "Mais conexões para sua marca": cards dos serviços complementares
 
 **Resumo:** os dois links simples viraram cards premium, clicáveis por inteiro, mais contidos que os 10 serviços principais.

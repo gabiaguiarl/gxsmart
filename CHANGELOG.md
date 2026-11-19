@@ -2,6 +2,15 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 19/11/2026 — Publicação pela API da Hostinger (mesmo método do MDG)
+
+**Resumo:** o publicar.cmd deixou de usar FTP. Agora envia um zip e publica pela API oficial da Hostinger com token, como o projeto MDG: sem IP, usuário FTP ou pasta.
+
+- scripts/hostinger-publicar.mjs: resolve a conta pelo domínio novo.gxsmart.com.br, envia o zip (upload TUS em partes, com retomada) e chama o deploy de site estático (websites/{domínio}/deploy), que substitui o conteúdo do subdomínio.
+- publicar.ps1: monta o pacote a partir de dist/ (35 arquivos), gera o zip, oferece reaproveitar o token do projeto MDG, testa o acesso e pede confirmação antes de publicar; -SemEnviar só gera o pacote.
+- configurar-token.cmd: grava o token em .env.hostinger-api (fora do Git) e testa o acesso; token recusado é descartado.
+- Removidos o fluxo FTP e o diagnosticar.cmd (o FTP do hPanel apontava para outro armazenamento que não o do subdomínio).
+
 ## 18/11/2026 — Publicação no subdomínio novo.gxsmart.com.br
 
 **Resumo:** script de publicação com dois cliques para a Hostinger, sem guardar senha.

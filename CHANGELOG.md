@@ -2,6 +2,17 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 19/11/2026 — "Mais conexões para sua marca": cards dos serviços complementares
+
+**Resumo:** os dois links simples viraram cards premium, clicáveis por inteiro, mais contidos que os 10 serviços principais.
+
+- Catálogos no WhatsApp: ícone de sacola com itens (catálogo), "Seus produtos organizados para facilitar o atendimento e as vendas."
+- Google Meu Negócio: ícone de pin com lupa de busca, "Mais visibilidade para sua empresa nas buscas e no Google Maps."
+- Título 19–22px, descrição 16px, CTA "Saiba mais →"; superfície escura, borda discreta, roxo só nos detalhes. Lado a lado no desktop, empilhados no tablet/celular.
+- Motion: entrada suave em sequência (animação existente reaproveitada); hover/foco com elevação de 4px, borda #7809AC, ícone com fundo roxo e microanimação (alça da sacola / pin e lupa), seta deslizando. Sem loops; movimento reduzido sem deslocamentos.
+- Interação: card inteiro é o link (sem botões aninhados), destino #contato preservado e o clique continua preenchendo o serviço no formulário; foco com anel roxo.
+- Ícones em SVG inline (sem novos assets). Sem rolagem lateral em 1440, 768, 390 e 360px; 9/9 testes.
+
 ## 19/11/2026 — Portfólio como vitrine de marcas (logos oficiais coloridas)
 
 **Resumo:** "Cada marca. Um universo." deixa de ser uma coleção de logos brancas iguais e passa a valorizar a identidade de cada cliente, mantendo o preto e o roxo GX na interface.

@@ -88,7 +88,7 @@ function sections() {
     onLeaveBack: (b) => gsap.to(b, { opacity: 0, y: 40, rotateX: -10, duration: DUR.fast, ease: EASE.soft, overwrite: true }),
   });
   gsap.from('.sc-stage', { opacity: 0, x: -30, duration: DUR.base, ease: EASE.out, scrollTrigger: { trigger: '.showcase', start: 'top 85%', toggleActions: 'play none none reverse' } });
-  gsap.from('.service-extras a', { opacity: 0, x: -30, duration: DUR.base, ease: EASE.out, stagger: 0.1, scrollTrigger: { trigger: '.service-extras', start: 'top 92%', toggleActions: 'play none none reverse' } });
+  gsap.from('.service-extras .extra-card', { opacity: 0, y: 28, duration: DUR.base, ease: EASE.out, stagger: 0.1, scrollTrigger: { trigger: '.service-extras', start: 'top 92%', toggleActions: 'play none none reverse' } });
   // Typographic parallax: lines of these headings drift at different rates.
   // 7.0: typographic parallax removed — headings stay still while being read.
   // Diferença: numbers pop, copy slides.

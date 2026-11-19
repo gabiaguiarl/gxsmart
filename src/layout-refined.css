@@ -408,3 +408,45 @@ html body .portfolio .project-caption>span{font-size:12px;letter-spacing:.1em;te
 }
 /* A luz roxa do cursor (mix-blend screen) tingiria as cores oficiais das marcas: some só sobre os cards de marca. */
 body:has(.portfolio .project>a:hover .project-logo:not(.brand-gx)) .cursor-light{opacity:0!important;transition:opacity .2s}
+
+/* ═══ "Mais conexões para sua marca" — cards dos serviços complementares ═══
+   Card inteiro é o link (#contato + data-service preenche o formulário); sem botões aninhados.
+   Mais contidos que os 10 serviços principais: sem imagens, ícone de traço, superfície escura. */
+html body .service-extras{display:block;padding:clamp(28px,3vw,40px) 0;border-bottom:1px solid #ffffff20}
+html body .service-extras>span{display:block;margin:0 0 18px;padding:0;width:auto}
+.extra-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
+html body .service-extras a.extra-card{display:grid;grid-template-columns:auto 1fr;align-items:start;gap:20px;width:auto;min-height:0;
+  padding:clamp(22px,2.2vw,30px);border:1px solid #ffffff1a;border-radius:16px;font-size:inherit;color:#fff;text-decoration:none;
+  background:linear-gradient(160deg,#0e0e12 0%,#08080a 100%);position:relative;overflow:hidden;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .35s ease,box-shadow .45s ease,background .45s ease}
+.extra-card:before{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .45s ease;
+  background:radial-gradient(60% 80% at 0% 0%,#7809ac26,#7809ac00 70%)}
+.extra-icon{display:grid;place-items:center;width:56px;height:56px;border-radius:14px;border:1px solid #7809ac66;background:#7809ac14;color:#c79bea;
+  transition:background .35s ease,color .35s ease,border-color .35s ease}
+.extra-svg{width:30px;height:30px;overflow:visible}
+.extra-svg *{transition:transform .5s cubic-bezier(.2,.8,.2,1);transform-box:fill-box;transform-origin:center}
+.extra-svg .ei-lens{fill:var(--ibg,#140c1b);transition:fill .35s ease}
+.extra-body{display:grid;gap:8px;min-width:0}
+html body .service-extras .extra-title{font-size:clamp(19px,1.5vw,22px);font-weight:500;line-height:1.25;color:#fff}
+html body .service-extras .extra-desc{font-size:16px;line-height:1.55;color:#bdb6c6;margin:0}
+html body .service-extras .extra-cta{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#fff;
+  width:max-content;padding-bottom:5px;background:linear-gradient(#7809ac,#7809ac) left bottom/30% 2px no-repeat;transition:background-size .45s cubic-bezier(.2,.8,.2,1)}
+.extra-cta b{font-weight:400;display:inline-block;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+/* Hover / foco */
+html body .service-extras a.extra-card:is(:hover,:focus-visible){transform:translateY(-4px);border-color:#7809ac;box-shadow:0 20px 40px -28px #7809ac99;text-decoration:none}
+.extra-card:is(:hover,:focus-visible):before{opacity:1}
+.extra-card:is(:hover,:focus-visible) .extra-icon{background:#7809ac;border-color:#7809ac;color:#fff;--ibg:#7809ac}
+.extra-card:is(:hover,:focus-visible) .extra-cta{background-size:100% 2px}
+.extra-card:is(:hover,:focus-visible) .extra-cta b{transform:translateX(5px)}
+html body .service-extras a.extra-card:focus-visible{outline:2px solid #a93ee0;outline-offset:4px}
+/* Microanimações dos ícones (uma vez por hover, sem loops) */
+.extra-card:is(:hover,:focus-visible) .ei-handle{transform:translateY(-2.5px)}
+.extra-card:is(:hover,:focus-visible) .ei-items rect:first-child{transform:translateY(-1.5px)}
+.extra-card:is(:hover,:focus-visible) .ei-items rect:nth-child(2){transform:translateY(-1.5px);transition-delay:.06s}
+.extra-card:is(:hover,:focus-visible) .ei-pin{transform:translateY(-3px)}
+.extra-card:is(:hover,:focus-visible) .ei-search{transform:scale(1.12) translate(-1px,-1px)}
+@media (max-width:899px){.extra-grid{grid-template-columns:1fr}}
+@media (max-width:599px){html body .service-extras a.extra-card{gap:16px;padding:20px}.extra-icon{width:50px;height:50px}.extra-svg{width:27px;height:27px}}
+@media (prefers-reduced-motion:reduce){
+  html body .service-extras a.extra-card:is(:hover,:focus-visible),.extra-card:is(:hover,:focus-visible) :is(.extra-cta b,.ei-handle,.ei-items rect,.ei-pin,.ei-search){transform:none}
+}

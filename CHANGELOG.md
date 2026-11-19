@@ -2,6 +2,18 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 17/11/2026 — UX Etapa 2: áreas de toque e navegação
+
+**Resumo:** todos os links e botões passam a ter área de toque de pelo menos 44×44px, e o cabeçalho mobile mostra em qual seção o visitante está.
+
+**Melhorias**
+- Áreas de toque ampliadas para 44px: atalhos do hero (36–40px), "Role para explorar" (16px, com margem compensada para não mover o texto), link "MDG" (41px de largura), e-mail do contato (32–35px), links do rodapé (30px; o espaçamento entre eles foi absorvido, +2px por link) e navegação do desktop (41px).
+- Cabeçalho mobile: rótulo discreto com ponto roxo e o nome da seção atual (O estúdio, Serviços, Projetos, Contato), com transição suave; some com o menu aberto, em telas abaixo de 360px e sem animação com movimento reduzido.
+
+**Observações técnicas**
+- O rótulo reaproveita o gatilho de rolagem que já marcava o link ativo com aria-current; é aria-hidden porque o link ativo já informa leitores de tela.
+- O botão de seleção dos cards de serviço aparece com 22px nas medições, mas sua área clicável real é o card inteiro (343×200px).
+
 ## 17/11/2026 — UX Etapa 1: legibilidade
 
 **Resumo:** primeira etapa do plano de experiência universal. Textos pequenos (rótulos, links, botões e legendas) agora têm tamanho mínimo legível, sem mudar cores, layout ou animações.

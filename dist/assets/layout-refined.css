@@ -263,3 +263,28 @@ body :is(.service-index,.hero-services a,.footer-bottom span){letter-spacing:.06
 /* Palco dos serviços: legenda e categoria (o palco é aria-hidden, mas o texto é lido visualmente). */
 body :is(.sc-hint,.sc-meta){font-size:11px}
 @media (max-width:599px){body :is(.sc-hint,.sc-meta){font-size:12px}}
+
+/* ═══ UX — Etapa 2: áreas de toque e navegação ═══
+   Alvos interativos com pelo menos 44×44px (referência WCAG 2.5.5 / Apple HIG), sem mudar o desenho:
+   onde o texto não pode crescer, a área é ampliada com margem negativa compensada. */
+body .header nav>a:not(.nav-cta){display:inline-flex;align-items:center;min-height:44px;padding-block:0}
+body .hero-services a{min-height:44px}
+body .hero-foot a{display:inline-flex;align-items:center;min-height:44px;margin-block:-14px}
+body .virtual-links a{display:inline-flex;align-items:center;justify-content:center;min-width:44px}
+body .contact-cta a.email{display:inline-flex;align-items:flex-end;min-height:44px}
+body .footer-columns>div{gap:0}
+body .footer-columns a{display:inline-flex;align-items:center;min-height:44px}
+body .footer-columns span{margin-bottom:6px}
+/* Seção atual no cabeçalho mobile (o menu fechado não mostrava onde o leitor está). */
+.header-current{display:none}
+@media (max-width:899px){
+  .header-current{display:inline-flex;align-items:center;gap:8px;margin:0 16px 0 auto;font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;color:#bdbdbd;white-space:nowrap;opacity:0;transform:translateY(4px);
+    transition:opacity .35s var(--ease-out,ease),transform .35s var(--ease-out,ease);pointer-events:none}
+  .header-current:before{content:'';width:6px;height:6px;border-radius:50%;background:#7809ac;box-shadow:0 0 0 3px #7809ac33}
+  .header-current.is-on{opacity:1;transform:none}
+  .header:has(.menu-toggle[aria-expanded="true"]) .header-current{opacity:0}
+}
+@media (max-width:359px){.header-current{display:none}}
+@media (prefers-reduced-motion:reduce){.header-current{transition:none;transform:none}}
+

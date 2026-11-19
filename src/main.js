@@ -36,8 +36,15 @@ ScrollTrigger.create({start:60,onUpdate:self=>document.querySelector('.header').
 gsap.to('.reading-progress span',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:true}});
 document.querySelectorAll('nav a[href^="#"]').forEach(link=>{
   ScrollTrigger.create({trigger:link.getAttribute('href'),start:'top 35%',end:'bottom 35%',onToggle:self=>{
-    if(self.isActive) link.setAttribute('aria-current','location');
-    else link.removeAttribute('aria-current');
+    // Mobile header label mirrors the active section (the menu is closed most of the time).
+    const current=document.querySelector('.header-current'),href=link.getAttribute('href');
+    if(self.isActive){
+      link.setAttribute('aria-current','location');
+      if(current){current.textContent=link.classList.contains('nav-cta')?'Contato':link.textContent.replace('↗','').trim();current.dataset.for=href;current.classList.add('is-on');}
+    }else{
+      link.removeAttribute('aria-current');
+      if(current&&current.dataset.for===href) current.classList.remove('is-on');
+    }
   }});
 });
 initMotion();

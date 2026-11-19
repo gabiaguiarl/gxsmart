@@ -450,3 +450,10 @@ html body .service-extras a.extra-card:focus-visible{outline:2px solid #a93ee0;o
 @media (prefers-reduced-motion:reduce){
   html body .service-extras a.extra-card:is(:hover,:focus-visible),.extra-card:is(:hover,:focus-visible) :is(.extra-cta b,.ei-handle,.ei-items rect,.ei-pin,.ei-search){transform:none}
 }
+
+/* Cards de serviço da home → página individual (/servicos/<slug>/) */
+html body .sc-cards .service-copy .service-more{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:6px;
+  font-size:14px;color:#e3c7f7;text-decoration:underline;text-decoration-color:#7809ac;text-underline-offset:6px;text-decoration-thickness:2px}
+html body .sc-cards .service-copy .service-more span{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+html body .sc-cards .service-copy .service-more:is(:hover,:focus-visible){color:#fff}
+html body .sc-cards .service-copy .service-more:is(:hover,:focus-visible) span{transform:translateX(4px)}

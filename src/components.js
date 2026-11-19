@@ -32,6 +32,9 @@ export function connectionGrid() {
 // The stage fallback keeps serviceVisual('marketplace').
 // Shared 2.5D scene (single image layer: float, pointer tilt, hover depth). Used for the
 // Marketplaces and Lives de Vendas compositions, in the service cards and in the stage.
+// Rotas das páginas individuais (dist/servicos/<slug>/, geradas por scripts/gerar-servicos.mjs).
+export const SERVICE_SLUGS = { marketplace: 'marketplaces', commerce: 'e-commerce', live: 'lives-de-vendas', marketing: 'marketing-digital', website: 'desenvolvimento-de-sites', social: 'social-media', video: 'producao-audiovisual', design: 'design-digital', traffic: 'gestao-de-trafego', landing: 'landing-pages' };
+
 const SCENES = {
   marketplace: { cls: 'visual-marketplace market-scene', src: '/assets/marketplaces/marketplace-composition.webp', h: 676 },
   commerce: { cls: 'visual-commerce market-scene scene-commerce', src: '/assets/commerce/commerce-composition.webp', h: 640 },
@@ -213,7 +216,7 @@ export function kineticStatement(words) {
 // is a separate link. No scroll-driven selection: the page scrolls naturally.
 export function servicesShowcase(services) {
   const n = String(services.length).padStart(2, '0');
-  const cards = services.map(([title, description, tag, icon, kind], i) => `<article class="service-card sc-card card-${kind}${i ? '' : ' is-active'}" data-index="${i}"><div class="service-top"><span class="icon-box">${techIcon(icon)}</span><span class="service-index">${String(i + 1).padStart(2, '0')} / ${tag}</span></div>${cardVisual(kind)}<div class="service-copy"><h3><button class="sc-select" type="button" aria-pressed="${i === 0}">${title}</button></h3><p>${description}</p></div><a class="service-action" href="#contato" data-service="${title}" aria-label="Vamos conversar sobre ${title}">VAMOS CONVERSAR <span aria-hidden="true">↗</span></a></article>`).join('');
+  const cards = services.map(([title, description, tag, icon, kind], i) => `<article class="service-card sc-card card-${kind}${i ? '' : ' is-active'}" data-index="${i}"><div class="service-top"><span class="icon-box">${techIcon(icon)}</span><span class="service-index">${String(i + 1).padStart(2, '0')} / ${tag}</span></div>${cardVisual(kind)}<div class="service-copy"><h3><button class="sc-select" type="button" aria-pressed="${i === 0}">${title}</button></h3><p>${description}</p><a class="service-more" href="/servicos/${SERVICE_SLUGS[kind]}/">Conhecer o serviço <span aria-hidden="true">→</span></a></div><a class="service-action" href="#contato" data-service="${title}" aria-label="Vamos conversar sobre ${title}">VAMOS CONVERSAR <span aria-hidden="true">↗</span></a></article>`).join('');
   const visuals = services.map(([, , , , kind], i) => `<div class="svc-fallback-item${i ? '' : ' is-active'}">${cardVisual(kind)}</div>`).join('');
   const titles = services.map(([title], i) => `<strong class="${i ? '' : 'is-active'}">${title}</strong>`).join('');
   const tags = services.map(([, , tag], i) => `<i class="${i ? '' : 'is-active'}">${tag}</i>`).join('');

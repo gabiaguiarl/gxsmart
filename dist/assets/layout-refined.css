@@ -349,3 +349,11 @@ html body :is(.story-copy p,.story-next p){font-size:clamp(16px,1.3vw,18px);line
 html body :is(.process ol li p,.process .section-title p){font-size:15px;line-height:1.6}
 html body .contact form .form-note,html body .contact .form-status{font-size:14px;line-height:1.6}
 html body :is(.hero-actions .button,.hero-actions .text-link,.contact-cta .button,.sc-cards .service-action,.contact form .text-link,.services-heading .text-link){font-size:13px;letter-spacing:.06em}
+
+/* ═══ Ajustes pós-Etapa C ═══ */
+/* "O que nos guia": medidor de três segmentos removido (pedido do cliente). */
+.statement .statement-meter{display:none!important}
+/* "Ideias conectadas": rede neural em canvas (connect-graph.js). */
+body .network-transition{height:320px}
+.net-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+@media (max-width:899px){body .network-transition{height:440px}}

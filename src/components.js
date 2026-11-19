@@ -26,7 +26,7 @@ export function techCube() {
 }
 export function connectionGrid() {
   // Filled and animated by connect-graph.js (layout depends on the real box and label size).
-  return '<svg class="net-graph" aria-hidden="true" focusable="false"></svg>';
+  return '<canvas class="net-canvas" aria-hidden="true"></canvas>';
 }
 // Marketplace card (service list only): layered 2.5D composition from the supplied reference image.
 // The stage fallback keeps serviceVisual('marketplace').

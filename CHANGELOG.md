@@ -2,6 +2,15 @@
 
 Histórico das fases de refinamento publicadas no GitHub. O histórico anterior (12 a 15/11/2026) está em [docs/CHANGELOG.md](docs/CHANGELOG.md).
 
+## 19/11/2026 — "Ideias conectadas" em rede neural animada e "O que nos guia" sem medidor
+
+**Resumo:** a animação de conexões foi refeita com muito mais presença, e a linha de três segmentos sob "Tecnologia. Criatividade. Resultados." foi removida.
+
+- connect-graph.js reescrito em canvas 2D (sem dependências): pontos partem de uma espiral de ângulo áureo e se organizam em 4 camadas simétricas por lado; ligações acendem de fora para dentro com cabeça de luz; o rótulo acende; antenas expandem até as bordas.
+- Depois da introdução: pulsos de luz com rastro percorrem caminhos até o rótulo (dados chegando à solução), ligações percorridas brilham, nós respiram; com mouse, nós próximos se ligam ao cursor e os pulsos ficam mais frequentes. Todo nó tem caminho até o rótulo.
+- Horizontal no desktop (320px), vertical no celular (440px, menos pulsos); pausa fora da tela e com a aba oculta; movimento reduzido mostra o estado final estático. SVG substituído por <canvas class="net-canvas">.
+- "O que nos guia": medidor (statement-meter) oculto; animação das palavras mantida.
+
 ## 19/11/2026 — Publicação pela API da Hostinger (mesmo método do MDG)
 
 **Resumo:** o publicar.cmd deixou de usar FTP. Agora envia um zip e publica pela API oficial da Hostinger com token, como o projeto MDG: sem IP, usuário FTP ou pasta.
